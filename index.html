@@ -228,7 +228,204 @@
         }
         .price-card.featured .cta-button { background-color: var(--accent-color); color: var(--dark-bg); }
 
+        /* Gaya untuk area Kode Diskon */
+        .discount-area {
+            margin-top: 40px;
+            text-align: center;
+        }
 
+        .discount-area button {
+            padding: 12px 25px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 0 10px;
+        }
+
+        #openDiscountModalBtn {
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            box-shadow: 0 4px 10px rgba(255, 107, 0, 0.4);
+        }
+
+        #openDiscountModalBtn:hover {
+            background-color: #FF8533;
+            transform: translateY(-2px);
+        }
+
+        #openHistoryModalBtn {
+            background-color: var(--dark-surface);
+            color: var(--light-text);
+            border: 2px solid var(--accent-color);
+        }
+
+        #openHistoryModalBtn:hover {
+            background-color: #333333;
+        }
+        
+        /* Gaya untuk Modal Kode Diskon dan Riwayat */
+        .promo-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 4000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(2px);
+        }
+
+        .promo-modal-content {
+            background-color: var(--dark-surface);
+            margin: 15% auto; 
+            padding: 40px;
+            border: 3px solid var(--border-color); /* Awalnya abu-abu */
+            width: 80%;
+            max-width: 450px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+            position: relative;
+        }
+        
+        .promo-modal.active {
+            display: block;
+        }
+        
+        .promo-modal.active .promo-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Keyframes untuk Animasi Klaim Sukses */
+        @keyframes successGlow {
+            0% { 
+                border-color: var(--accent-color); 
+                box-shadow: 0 0 40px rgba(255, 107, 0, 0.8);
+            }
+            50% { 
+                border-color: #4CAF50; /* Hijau Sukses */
+                box-shadow: 0 0 60px rgba(76, 175, 80, 0.8);
+            }
+            100% { 
+                border-color: var(--accent-color); 
+                box-shadow: 0 0 40px rgba(255, 107, 0, 0.8);
+            }
+        }
+        
+        @keyframes couponShake {
+            0%, 100% { transform: translateX(0) scale(1.05); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px) scale(1.05); }
+            20%, 40%, 60%, 80% { transform: translateX(5px) scale(1.05); }
+        }
+
+        .promo-modal-content.claim-success {
+            animation: successGlow 1.5s ease-in-out forwards;
+            border-color: #4CAF50;
+            transform: scale(1.05);
+        }
+
+        .promo-modal-content h4 {
+            color: var(--accent-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+        
+        #discountCodeInput {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            background-color: #282830;
+            color: var(--light-text);
+            font-size: 1.2em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        #discountCodeInput:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+        
+        #applyDiscountBtn {
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        #applyDiscountBtn:hover {
+            background-color: #FF8533;
+        }
+        
+        #discountMessage {
+            margin-top: 15px;
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 1em;
+            min-height: 20px; /* Jaga agar tidak bergeser saat kosong */
+        }
+        
+        .promo-modal-content .close-promo {
+            background-color: var(--light-text); 
+            color: var(--dark-bg);
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .promo-modal-content .close-promo:hover {
+            background-color: var(--secondary-text);
+        }
+        
+        /* Riwayat Promo */
+        #historyListPromo {
+            list-style: none;
+            text-align: left;
+            padding: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+            padding-top: 10px;
+        }
+        
+        #historyListPromo li {
+            background-color: #282830;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95em;
+            align-items: center;
+        }
+        
+        #historyListPromo .status-claimed {
+            color: #4CAF50; /* Hijau untuk klaim */
+            font-weight: 700;
+        }
+        
+        /* --- Gaya untuk Bagian Gacha (yang sudah ada) --- */
         .gallery-wrapper {
             background-color: var(--dark-surface); padding: 60px; border-radius: 10px; margin-top: 30px;
         }
@@ -740,6 +937,17 @@
                 margin: 5px 0 20px;
             }
             
+            /* Discount Area di HP */
+            .discount-area {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .discount-area button {
+                width: 100%;
+                margin: 0;
+            }
+            
             /* Gallery */
             .gallery-wrapper {
                 padding: 20px;
@@ -797,6 +1005,16 @@
             }
             .gacha-modal-content .result-message {
                 font-size: 1.2em;
+            }
+            
+            /* Penyesuaian Responsif untuk Modal Promo */
+            .promo-modal-content {
+                width: 90%;
+                margin: 20% auto;
+                padding: 20px;
+            }
+            .promo-modal-content h4 {
+                font-size: 1.5em;
             }
 
             /* Penyesuaian Responsif untuk Modal Login Admin */
@@ -896,6 +1114,19 @@
             </div>
 
         </div>
+        
+        <div class="discount-area">
+            <button id="openDiscountModalBtn" onclick="openPromoModal('discount')">
+                <i class="fas fa-tag"></i> MASUKKAN KODE DISKON
+            </button>
+            <button id="openHistoryModalBtn" onclick="openPromoModal('history')">
+                <i class="fas fa-receipt"></i> RIWAYAT KODE PROMO
+            </button>
+            <p id="discountInfo" style="margin-top: 20px; color: #4CAF50; font-weight: 600; display: none;">
+                <i class="fas fa-check-circle"></i> <span></span>
+            </p>
+        </div>
+        
     </section>
 
     <section class="section" id="gallery">
@@ -988,6 +1219,26 @@
       </div>
     </div>
     
+    <div id="discountModal" class="promo-modal" onclick="closePromoModal('discount')">
+      <div class="promo-modal-content" onclick="event.stopPropagation()">
+        <h4><i class="fas fa-ticket-alt"></i> MASUKKAN KODE DISKON</h4>
+        <p style="color: var(--secondary-text); font-size: 0.9em;">Masukkan kode unik Anda untuk mendapatkan diskon khusus (berlaku 1x).</p>
+        <input type="text" id="discountCodeInput" placeholder="Contoh: C**3*" maxlength="5">
+        <button id="applyDiscountBtn" onclick="applyDiscountCode()">APPLY KODE</button>
+        <div id="discountMessage"></div>
+        <button class="close-promo" onclick="closePromoModal('discount')">Tutup</button>
+      </div>
+    </div>
+
+    <div id="historyModal" class="promo-modal" onclick="closePromoModal('history')">
+      <div class="promo-modal-content" onclick="event.stopPropagation()">
+        <h4><i class="fas fa-history"></i> RIWAYAT KODE PROMO</h4>
+        <ul id="historyListPromo">
+            </ul>
+        <button class="close-promo" onclick="closePromoModal('history')">Tutup</button>
+      </div>
+    </div>
+    
     <div id="adminLoginModal" class="gacha-modal">
         <div id="adminLoginContent">
             <h3><i class="fas fa-user-secret"></i> ADMIN LOGIN</h3>
@@ -1011,6 +1262,169 @@
     </footer>
 
     <script>
+        // --- KONSTANTA BARU ---
+        const VALID_DISCOUNT_CODE = "MXO25";
+        const PROMO_HISTORY_KEY = 'promoCodeHistory';
+        const DISCOUNT_AMOUNT = "10%"; // *** DISKON DIUBAH MENJADI 10% ***
+
+        // --- ELEMEN BARU ---
+        const discountModal = document.getElementById('discountModal');
+        const discountModalContent = discountModal.querySelector('.promo-modal-content');
+        const historyModal = document.getElementById('historyModal');
+        const discountCodeInput = document.getElementById('discountCodeInput');
+        const discountMessage = document.getElementById('discountMessage');
+        const discountInfoDisplay = document.getElementById('discountInfo');
+        const discountInfoSpan = discountInfoDisplay.querySelector('span');
+        const historyListPromo = document.getElementById('historyListPromo');
+
+        // --- FUNGSI BARU UNTUK PROMO ---
+        
+        function openPromoModal(type) {
+            // Hapus kelas animasi saat modal dibuka kembali
+            discountModalContent.classList.remove('claim-success');
+            
+            if (type === 'discount') {
+                discountCodeInput.value = '';
+                discountMessage.textContent = '';
+                discountModal.classList.add('active');
+            } else if (type === 'history') {
+                displayPromoHistory();
+                historyModal.classList.add('active');
+            }
+        }
+
+        function closePromoModal(type) {
+            if (type === 'discount') {
+                discountModal.classList.remove('active');
+            } else if (type === 'history') {
+                historyModal.classList.remove('active');
+            }
+        }
+
+        function getPromoHistory() {
+            return JSON.parse(localStorage.getItem(PROMO_HISTORY_KEY) || '[]');
+        }
+        
+        function savePromoCode(code, status, discount) {
+            const history = getPromoHistory();
+            
+            const newEntry = {
+                code: code.toUpperCase(),
+                status: status, // 'Claimed', 'Invalid', atau 'Already Used'
+                discount: discount || '',
+                timestamp: new Date().toLocaleDateString('id-ID', {
+                    year: 'numeric', month: 'short', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                })
+            };
+            
+            // Simpan riwayat
+            localStorage.setItem(PROMO_HISTORY_KEY, JSON.stringify([newEntry, ...history]));
+            
+            // Jika sukses, atur status claim untuk pemeriksaan sekali pakai
+            if (status === 'Claimed') {
+                localStorage.setItem(`claimedCode_${code.toUpperCase()}`, 'true');
+            }
+        }
+        
+        function checkClaimedStatus(code) {
+            // Periksa apakah kode ini sudah pernah di-claim
+            return localStorage.getItem(`claimedCode_${code.toUpperCase()}`) === 'true';
+        }
+
+        function applyDiscountCode() {
+            const code = discountCodeInput.value.trim().toUpperCase();
+            
+            // Reset pesan dan animasi
+            discountMessage.textContent = '';
+            discountModalContent.classList.remove('claim-success');
+
+            if (code === "") {
+                discountMessage.style.color = '#FFD700';
+                discountMessage.textContent = 'Mohon masukkan kode diskon.';
+                return;
+            }
+
+            if (code === VALID_DISCOUNT_CODE) {
+                if (checkClaimedStatus(code)) {
+                    // Sudah pernah di-claim
+                    discountMessage.style.color = '#FF0000'; // Merah
+                    discountMessage.textContent = `Kode "${code}" sudah pernah digunakan. (Berlaku 1x)`;
+                    savePromoCode(code, 'Already Used', DISCOUNT_AMOUNT);
+                } else {
+                    // Sukses claim!
+                    
+                    // 1. Terapkan animasi
+                    discountModalContent.classList.add('claim-success');
+                    
+                    // 2. Update pesan
+                    discountMessage.style.color = '#4CAF50'; // Hijau
+                    discountMessage.textContent = `Selamat! Anda berhasil mendapatkan Diskon ${DISCOUNT_AMOUNT}! Tunjukkan pesan ini di Discord saat order.`;
+                    
+                    // 3. Update info di halaman utama
+                    discountInfoDisplay.style.display = 'block';
+                    discountInfoSpan.textContent = `Diskon Aktif: ${DISCOUNT_AMOUNT} menggunakan kode ${code}! Tunjukkan di Discord.`;
+                    
+                    // 4. Simpan ke riwayat
+                    savePromoCode(code, 'Claimed', DISCOUNT_AMOUNT);
+                }
+            } else {
+                // Kode salah
+                discountMessage.style.color = '#FF0000'; // Merah
+                discountMessage.textContent = `Kode "${code}" tidak valid. Coba lagi.`;
+                savePromoCode(code, 'Invalid');
+            }
+            // Reset warna ke default kuning setelah pesan error/peringatan
+            if (!discountMessage.textContent.includes('Selamat')) {
+                 setTimeout(() => { 
+                    discountMessage.style.color = '#FFD700'; 
+                    // Pastikan kelas animasi dihapus jika terjadi kegagalan
+                    discountModalContent.classList.remove('claim-success');
+                }, 3000);
+            }
+        }
+
+        function displayPromoHistory() {
+            const history = getPromoHistory();
+            historyListPromo.innerHTML = ''; // Kosongkan daftar
+
+            if (history.length === 0) {
+                historyListPromo.innerHTML = '<li style="justify-content: center;">Belum ada riwayat klaim kode promo.</li>';
+                return;
+            }
+
+            history.forEach(item => {
+                const listItem = document.createElement('li');
+                
+                let statusText = item.status;
+                let statusColor = 'var(--secondary-text)';
+                let statusIcon = '';
+
+                if (item.status === 'Claimed') {
+                    statusText = `Terklaim (${item.discount})`;
+                    statusColor = '#4CAF50';
+                    statusIcon = '<i class="fas fa-check-circle" style="margin-right: 5px;"></i>';
+                } else if (item.status === 'Already Used') {
+                    statusText = `Sudah Digunakan (${item.discount})`;
+                    statusColor = '#FFD700';
+                    statusIcon = '<i class="fas fa-exclamation-triangle" style="margin-right: 5px;"></i>';
+                } else {
+                    statusText = 'Tidak Valid';
+                    statusColor = '#FF0000';
+                    statusIcon = '<i class="fas fa-times-circle" style="margin-right: 5px;"></i>';
+                }
+
+
+                listItem.innerHTML = `
+                    <span>Kode: <strong>${item.code}</strong></span>
+                    <span style="color: ${statusColor}; font-weight: 700;">${statusIcon}${statusText}</span>
+                    <span style="color: var(--secondary-text); font-size: 0.8em;">${item.timestamp}</span>
+                `;
+                historyListPromo.appendChild(listItem);
+            });
+        }
+        
+        // --- LOGIKA ADMIN (TETAP SAMA) ---
         var modal = document.getElementById("myModal");
         var modalImg = document.getElementById("img01");
         
@@ -1083,7 +1497,9 @@
                 adminLogoutButton.style.display = 'none';
                 gachaLimitText.textContent = "Hanya 1x sehari";
                 updateGachaTimer(); // Lanjutkan timer/cek cooldown normal
-                window.gachaInterval = setInterval(updateGachaTimer, 1000); // Pastikan interval berjalan
+                if (!window.gachaInterval) { // Hanya set interval jika belum diset
+                   window.gachaInterval = setInterval(updateGachaTimer, 1000); 
+                }
             }
         }
         
@@ -1099,7 +1515,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.body.classList.add('page-loaded'); 
             checkAdminStatus(); // Panggil saat memuat untuk menginisialisasi status admin
-            displayGachaHistory(); // Panggil untuk menampilkan riwayat
+            displayGachaHistory(); // Panggil untuk menampilkan riwayat Gacha
         });
 
         // Fungsionalitas Galeri Modal
@@ -1158,12 +1574,23 @@
                     closeModal();
                 }
             }
+             // Tambahkan Escape untuk Modal Promo
+            if (e.key === "Escape") {
+                 closePromoModal('discount');
+                 closePromoModal('history');
+            }
         });
 
         // Tutup modal jika user mengklik area abu-abu di luar gambar (kecuali panah)
         window.onclick = function(event) {
           if (event.target == modal) {
             closeModal();
+          }
+          if (event.target == discountModal) {
+            closePromoModal('discount');
+          }
+          if (event.target == historyModal) {
+            closePromoModal('history');
           }
         }
         
@@ -1221,7 +1648,7 @@
         window.scrollToTop = scrollToTop;
         
         /* -------------------------------------------------------- */
-        /* --- Fungsionalitas Daily Gacha (MODIFIED) --- */
+        /* --- Fungsionalitas Daily Gacha --- */
         /* -------------------------------------------------------- */
         
         const gachaButton = document.getElementById('gachaButton');
@@ -1368,7 +1795,14 @@
         // Fungsi untuk mengupdate timer cooldown
         function updateGachaTimer() {
             // Hentikan jika admin sedang login
-            if (localStorage.getItem(ADMIN_LOGGED_IN_KEY) === 'true') return;
+            if (localStorage.getItem(ADMIN_LOGGED_IN_KEY) === 'true') {
+                 // Pastikan tidak ada interval yang berjalan saat admin aktif
+                 if (window.gachaInterval) {
+                    clearInterval(window.gachaInterval);
+                    window.gachaInterval = null;
+                 }
+                 return; 
+            }
 
             const lastGachaTime = parseInt(localStorage.getItem(LAST_GACHA_KEY) || 0);
             const now = new Date().getTime();
@@ -1405,6 +1839,9 @@
                 closeGachaModal();
             }
         });
+        
+        window.openPromoModal = openPromoModal;
+        window.applyDiscountCode = applyDiscountCode;
         
     </script>
 </body>
