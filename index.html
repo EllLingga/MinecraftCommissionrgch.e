@@ -1223,7 +1223,7 @@
       <div class="promo-modal-content" onclick="event.stopPropagation()">
         <h4><i class="fas fa-ticket-alt"></i> MASUKKAN KODE DISKON</h4>
         <p style="color: var(--secondary-text); font-size: 0.9em;">Masukkan kode unik Anda untuk mendapatkan diskon khusus (berlaku 1x).</p>
-        <input type="text" id="discountCodeInput" placeholder="Contoh: C**3*" maxlength="5">
+        <input type="text" id="discountCodeInput" placeholder="Contoh: C**3*" maxlength="20">
         <button id="applyDiscountBtn" onclick="applyDiscountCode()">APPLY KODE</button>
         <div id="discountMessage"></div>
         <button class="close-promo" onclick="closePromoModal('discount')">Tutup</button>
@@ -1262,10 +1262,15 @@
     </footer>
 
     <script>
-        // --- KONSTANTA BARU ---
-        const VALID_DISCOUNT_CODE = "MXO25";
+        // --- KONSTANTA BARU (UPDATED) ---
+        // Daftar kode diskon dan besaran diskonnya
+        const AVAILABLE_CODES = {
+            "ARDHA25": "5%",
+            "AKHIR2025": "10%",
+            "NATAL25": "10%"
+        };
+        
         const PROMO_HISTORY_KEY = 'promoCodeHistory';
-        const DISCOUNT_AMOUNT = "10%"; // *** DISKON DIUBAH MENJADI 10% ***
 
         // --- ELEMEN BARU ---
         const discountModal = document.getElementById('discountModal');
@@ -1332,7 +1337,7 @@
             return localStorage.getItem(`claimedCode_${code.toUpperCase()}`) === 'true';
         }
 
-        function applyDiscountCode() {
+                function applyDiscountCode() {
             const code = discountCodeInput.value.trim().toUpperCase();
             
             // Reset pesan dan animasi
@@ -1345,12 +1350,17 @@
                 return;
             }
 
-            if (code === VALID_DISCOUNT_CODE) {
+            // Cek apakah kode ada di dalam daftar AVAILABLE_CODES
+            if (AVAILABLE_CODES.hasOwnProperty(code)) {
+                
+                // Ambil jumlah diskon berdasarkan kode yang dimasukkan
+                const currentDiscountAmount = AVAILABLE_CODES[code];
+
                 if (checkClaimedStatus(code)) {
                     // Sudah pernah di-claim
                     discountMessage.style.color = '#FF0000'; // Merah
                     discountMessage.textContent = `Kode "${code}" sudah pernah digunakan. (Berlaku 1x)`;
-                    savePromoCode(code, 'Already Used', DISCOUNT_AMOUNT);
+                    savePromoCode(code, 'Already Used', currentDiscountAmount);
                 } else {
                     // Sukses claim!
                     
@@ -1359,21 +1369,22 @@
                     
                     // 2. Update pesan
                     discountMessage.style.color = '#4CAF50'; // Hijau
-                    discountMessage.textContent = `Selamat! Anda berhasil mendapatkan Diskon ${DISCOUNT_AMOUNT}! Tunjukkan pesan ini di Discord saat order.`;
+                    discountMessage.textContent = `Selamat! Kode "${code}" valid. Anda mendapatkan Diskon ${currentDiscountAmount}!`;
                     
                     // 3. Update info di halaman utama
                     discountInfoDisplay.style.display = 'block';
-                    discountInfoSpan.textContent = `Diskon Aktif: ${DISCOUNT_AMOUNT} menggunakan kode ${code}! Tunjukkan di Discord.`;
+                    discountInfoSpan.textContent = `Diskon Aktif: ${currentDiscountAmount} menggunakan kode ${code}! Tunjukkan screenshot ini di Discord.`;
                     
                     // 4. Simpan ke riwayat
-                    savePromoCode(code, 'Claimed', DISCOUNT_AMOUNT);
+                    savePromoCode(code, 'Claimed', currentDiscountAmount);
                 }
             } else {
-                // Kode salah
+                // Kode tidak ditemukan di daftar
                 discountMessage.style.color = '#FF0000'; // Merah
-                discountMessage.textContent = `Kode "${code}" tidak valid. Coba lagi.`;
+                discountMessage.textContent = `Kode "${code}" tidak valid atau sudah kadaluarsa.`;
                 savePromoCode(code, 'Invalid');
             }
+            
             // Reset warna ke default kuning setelah pesan error/peringatan
             if (!discountMessage.textContent.includes('Selamat')) {
                  setTimeout(() => { 
@@ -1383,6 +1394,7 @@
                 }, 3000);
             }
         }
+
 
         function displayPromoHistory() {
             const history = getPromoHistory();
