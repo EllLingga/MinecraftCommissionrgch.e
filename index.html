@@ -3,1053 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="foto/LogoStore.png">
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAM1BMVEUAAAD////////////////////////////////////////////////////////////////iYbZzAAAADXRSTlMAQGCAgMDG1Nnj8v+Qd5b8AAAAP0lEQVQY02WPSQ7AIAgEJ8n//2qg0l2m2a6GkQy7y3g1W7Z8E0k3o8G2aIipUj9E0C8mG6Qz9G0yJm8d0q8Qslv2Qy7h3k5wFq2eW0xjGq3w0Vh2H0S7z2kCFqgHd1I3yOqR4wAAAABJRU5ErkJggg==">
     <title>rgch.e 🎨 Minecraft Commission</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="6891a218-d166-409a-8d36-38a81203e3c2";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     <style>
-        /* CSS Styling - Palet Studio Profesional */
-        :root {
-            --dark-bg: #111115;
-            --dark-surface: #1E1E23;
-            --light-text: #F0F0F0;
-            --secondary-text: #AAAAAA;
-            --accent-color: #FF6B00; /* Aksen Oranye/Merah Terang */
-            --border-color: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            /* Animasi Fade-In Global untuk Body */
-            opacity: 0; /* Mulai dari tidak terlihat */
-            transition: opacity 0.5s ease-in;
-        }
-        
-        /* Kelas yang ditambahkan oleh JS setelah dimuat */
-        .page-loaded {
-            opacity: 1;
-        }
-
-        /* --- Desktop Styling --- */
-
-        .navbar {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            padding: 20px 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(17, 17, 21, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .logo a {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            color: var(--light-text);
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 400;
-            font-size: 0.95em;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover { color: var(--accent-color); }
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 2px;
-            display: block; margin-top: 5px; background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
-
-        .social-links a {
-            font-size: 1.2em; color: var(--secondary-text); margin-left: 15px; transition: color 0.3s;
-        }
-        .social-links a:hover { color: var(--accent-color); }
-
-        .hero {
-            height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            text-align: center; position: relative;
-            
-            background-image: none; 
-            
-            background-size: cover; background-position: bottom;
-            transition: background-image 1s ease-in-out; 
-        }
-        
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(1px);
-        }
-
-        .hero-content {
-            position: relative; z-index: 10; max-width: 800px;
-            /* Tambahkan animasi untuk kontainer hero */
-            animation: fadeIn 1s ease-out forwards;
-        }
-
-        /* Keyframes untuk Slide-Up dan Fade-In */
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content h1 {
-            font-size: 5em; font-weight: 900; margin-bottom: 0.2em; line-height: 1.1; text-transform: uppercase;
-            opacity: 0; /* Sembunyikan awal */
-            animation: slideUp 0.8s ease-out 0.5s forwards; /* Tunda 0.5s */
-        }
-        
-        /* Tambahkan ID pada span untuk trigger klik tersembunyi */
-        .hero-content h1 #commission-trigger { 
-            color: var(--accent-color); 
-            /* Tambahkan animasi warna berkedip pada kata 'COMMISSIONS' */
-            animation: colorPulse 1.5s infinite alternate; 
-            cursor: pointer; /* Menunjukkan bahwa ini dapat diklik */
-            user-select: none; /* Cegah pemilihan teks */
-        }
-
-        /* Keyframes untuk Animasi Warna Berkedip */
-        @keyframes colorPulse {
-            from { color: var(--accent-color); }
-            to { color: #FFD700; /* Warna Emas */ }
-        }
-
-        .hero-content p {
-            font-size: 1.2em; color: var(--secondary-text); margin-bottom: 40px;
-            opacity: 0; /* Sembunyikan awal */
-            animation: slideUp 0.8s ease-out 0.8s forwards; /* Tunda lebih lama */
-        }
-        
-        .cta-button {
-            background-color: var(--accent-color); color: var(--dark-bg);
-            padding: 14px 40px; text-decoration: none; font-weight: 700;
-            border-radius: 5px; transition: background-color 0.3s, transform 0.3s;
-            display: inline-block; letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.4);
-            opacity: 0; /* Sembunyikan awal */
-            animation: slideUp 0.8s ease-out 1.1s forwards; /* Tunda paling lama */
-        }
-        
-        .cta-button:hover { background-color: #FF8533; transform: translateY(-2px); }
-
-        .section {
-            padding: 100px 80px; max-width: 1400px; margin: 0 auto;
-        }
-
-        .section h2 {
-            font-size: 3em; font-weight: 700; text-align: center; margin-bottom: 70px;
-            position: relative; padding-bottom: 10px;
-        }
-        
-        .section h2::after {
-            content: ''; position: absolute; bottom: 0; left: 50%;
-            transform: translateX(-50%); width: 80px; height: 3px;
-            background: var(--accent-color);
-        }
-
-        .services-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
-        }
-
-        .service-card {
-            background-color: var(--dark-surface); padding: 30px; border-radius: 8px;
-            text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color); transition: border-color 0.3s, transform 0.3s;
-        }
-        
-        .service-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-
-        .service-card i { font-size: 2.5em; color: var(--accent-color); margin-bottom: 15px; }
-        .service-card h3 { margin-bottom: 10px; font-size: 1.3em; font-weight: 600; }
-        .service-card p { color: var(--secondary-text); }
-
-
-        .pricelist-container {
-            display: flex; gap: 50px; justify-content: center; align-items: stretch; margin-top: 40px;
-        }
-
-        .price-card {
-            background-color: var(--dark-surface); padding: 50px 30px; border-radius: 10px;
-            width: 40%; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--border-color); transition: border-color 0.3s;
-        }
-
-        .price-card.featured {
-             border-color: var(--accent-color);
-             box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);
-        }
-
-        .price-card h3 { font-size: 1.8em; color: var(--light-text); margin-bottom: 10px; font-weight: 700; }
-
-        .price-value {
-            font-size: 3.5em; font-weight: 900; color: var(--accent-color);
-            margin: 10px 0 30px; letter-spacing: -2px;
-        }
-        .price-value span { font-size: 0.4em; font-weight: 400; color: var(--secondary-text); }
-
-        .price-card ul { list-style: none; text-align: left; margin-bottom: 40px; }
-
-        .price-card ul li {
-            padding: 10px 0; color: var(--secondary-text); border-bottom: 1px solid #282830;
-            display: flex; align-items: center; font-size: 0.95em;
-        }
-
-        .price-card ul li:last-child { border-bottom: none; }
-        .price-card ul li i { color: var(--accent-color); margin-right: 15px; font-size: 1.1em; }
-        
-        .price-card .cta-button {
-            width: 100%; background-color: var(--light-text); color: var(--dark-bg);
-        }
-        .price-card.featured .cta-button { background-color: var(--accent-color); color: var(--dark-bg); }
-
-        /* Gaya untuk area Kode Diskon */
-        .discount-area {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .discount-area button {
-            padding: 12px 25px;
-            font-weight: 600;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            margin: 0 10px;
-        }
-
-        #openDiscountModalBtn {
-            background-color: var(--accent-color);
-            color: var(--dark-bg);
-            box-shadow: 0 4px 10px rgba(255, 107, 0, 0.4);
-        }
-
-        #openDiscountModalBtn:hover {
-            background-color: #FF8533;
-            transform: translateY(-2px);
-        }
-
-        #openHistoryModalBtn {
-            background-color: var(--dark-surface);
-            color: var(--light-text);
-            border: 2px solid var(--accent-color);
-        }
-
-        #openHistoryModalBtn:hover {
-            background-color: #333333;
-        }
-        
-        /* Gaya untuk Modal Kode Diskon dan Riwayat */
-        .promo-modal {
-            display: none; 
-            position: fixed; 
-            z-index: 4000; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.85); 
-            backdrop-filter: blur(2px);
-        }
-
-        .promo-modal-content {
-            background-color: var(--dark-surface);
-            margin: 15% auto; 
-            padding: 40px;
-            border: 3px solid var(--border-color); /* Awalnya abu-abu */
-            width: 80%;
-            max-width: 450px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            opacity: 0;
-            transition: all 0.3s ease-out;
-            position: relative;
-        }
-        
-        .promo-modal.active {
-            display: block;
-        }
-        
-        .promo-modal.active .promo-modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        /* Keyframes untuk Animasi Klaim Sukses */
-        @keyframes successGlow {
-            0% { 
-                border-color: var(--accent-color); 
-                box-shadow: 0 0 40px rgba(255, 107, 0, 0.8);
-            }
-            50% { 
-                border-color: #4CAF50; /* Hijau Sukses */
-                box-shadow: 0 0 60px rgba(76, 175, 80, 0.8);
-            }
-            100% { 
-                border-color: var(--accent-color); 
-                box-shadow: 0 0 40px rgba(255, 107, 0, 0.8);
-            }
-        }
-        
-        @keyframes couponShake {
-            0%, 100% { transform: translateX(0) scale(1.05); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px) scale(1.05); }
-            20%, 40%, 60%, 80% { transform: translateX(5px) scale(1.05); }
-        }
-
-        .promo-modal-content.claim-success {
-            animation: successGlow 1.5s ease-in-out forwards;
-            border-color: #4CAF50;
-            transform: scale(1.05);
-        }
-
-        .promo-modal-content h4 {
-            color: var(--accent-color);
-            font-size: 2em;
-            margin-bottom: 20px;
-            font-weight: 900;
-        }
-        
-        #discountCodeInput {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 2px solid var(--border-color);
-            border-radius: 5px;
-            background-color: #282830;
-            color: var(--light-text);
-            font-size: 1.2em;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        #discountCodeInput:focus {
-            border-color: var(--accent-color);
-            outline: none;
-        }
-        
-        #applyDiscountBtn {
-            background-color: var(--accent-color);
-            color: var(--dark-bg);
-            padding: 10px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
-
-        #applyDiscountBtn:hover {
-            background-color: #FF8533;
-        }
-        
-        #discountMessage {
-            margin-top: 15px;
-            color: #FFD700;
-            font-weight: 600;
-            font-size: 1em;
-            min-height: 20px; /* Jaga agar tidak bergeser saat kosong */
-        }
-        
-        .promo-modal-content .close-promo {
-            background-color: var(--light-text); 
-            color: var(--dark-bg);
-            padding: 10px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background-color 0.3s;
-            margin-top: 20px;
-        }
-
-        .promo-modal-content .close-promo:hover {
-            background-color: var(--secondary-text);
-        }
-        
-        /* Riwayat Promo */
-        #historyListPromo {
-            list-style: none;
-            text-align: left;
-            padding: 0;
-            max-height: 200px;
-            overflow-y: auto;
-            border-top: 1px solid var(--border-color);
-            margin-top: 20px;
-            padding-top: 10px;
-        }
-        
-        #historyListPromo li {
-            background-color: #282830;
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95em;
-            align-items: center;
-        }
-        
-        #historyListPromo .status-claimed {
-            color: #4CAF50; /* Hijau untuk klaim */
-            font-weight: 700;
-        }
-        
-        /* --- Gaya untuk Bagian Gacha (yang sudah ada) --- */
-        .gallery-wrapper {
-            background-color: var(--dark-surface); padding: 60px; border-radius: 10px; margin-top: 30px;
-        }
-        
-        .gallery-title {
-            text-align: center; font-size: 2em; font-weight: 700; color: var(--light-text);
-            margin-bottom: 30px; border-left: 5px solid var(--accent-color); padding-left: 15px;
-            display: inline-block; margin-left: 50%; transform: translateX(-50%);
-        }
-
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;
-        }
-
-        .gallery-item {
-            overflow: hidden; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            cursor: pointer; transition: box-shadow 0.3s; border: 2px solid var(--border-color);
-        }
-
-        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 5px 20px rgba(255, 107, 0, 0.4); }
-
-        .gallery-item img {
-            width: 100%; height: 250px; object-fit: cover; display: block; transition: transform 0.4s;
-        }
-
-        .gallery-item:hover img { transform: scale(1.05); filter: brightness(0.8); }
-        
-        /* Modal Style (Untuk Preview Foto) */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            padding-top: 50px; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.95); 
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: 900px;
-            border-radius: 5px;
-            transition: all 0.5s ease-out;
-        }
-        
-        @keyframes zoomIn {
-          from {
-            transform: scale(0.8);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-        
-        .modal-active {
-            animation: zoomIn 0.3s forwards;
-        }
-
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 45px;
-            color: #fff;
-            font-size: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: var(--accent-color);
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        /* Gaya Tombol Navigasi Modal (Panah) */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -50px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            -webkit-user-select: none;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev {
-            left: 0;
-            border-radius: 0 3px 3px 0;
-        }
-        
-        .prev:hover, .next:hover {
-            background-color: rgba(255, 107, 0, 0.8); /* Warna accent */
-        }
-        
-        /* Gaya Tombol Back to Top */
-        #backToTop {
-            display: none; 
-            position: fixed; 
-            bottom: 30px; 
-            right: 30px;
-            z-index: 1500; 
-            background-color: var(--accent-color); 
-            color: var(--dark-bg);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5em;
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.6);
-            cursor: pointer;
-            transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
-        }
-        
-        #backToTop:hover {
-            background-color: #FF8533;
-            transform: scale(1.1);
-        }
-        
-        /* --- Gaya untuk Bagian Gacha --- */
-        .gacha-section {
-            background-color: var(--dark-surface);
-            padding: 60px;
-            border-radius: 10px;
-            margin-top: 50px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .gacha-section h3 {
-            font-size: 2em;
-            font-weight: 700;
-            color: var(--light-text);
-            margin-bottom: 20px;
-        }
-
-        #gachaButton {
-            background-color: var(--accent-color);
-            color: var(--dark-bg);
-            padding: 15px 50px;
-            font-size: 1.2em;
-            font-weight: 700;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.4);
-            letter-spacing: 1px;
-        }
-
-        #gachaButton:hover:not(:disabled) {
-            background-color: #FF8533;
-            transform: translateY(-2px);
-        }
-
-        #gachaButton:disabled {
-            background-color: var(--secondary-text);
-            cursor: not-allowed;
-            box-shadow: none;
-            opacity: 0.6;
-        }
-
-        #gachaTimer {
-            margin-top: 15px;
-            font-size: 1.1em;
-            color: var(--secondary-text);
-            font-weight: 600;
-        }
-
-
-        /* Gaya untuk Modal Gacha */
-        .gacha-modal {
-            display: none; 
-            position: fixed; 
-            z-index: 3000; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.85); 
-            backdrop-filter: blur(2px);
-        }
-
-        .gacha-modal-content {
-            background-color: var(--dark-surface);
-            margin: 15% auto; 
-            padding: 40px;
-            border: 3px solid var(--accent-color);
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(255, 107, 0, 0.5);
-            transform: scale(0.9);
-            opacity: 0;
-            transition: all 0.3s ease-out;
-        }
-
-        .gacha-modal.active {
-            display: block;
-        }
-        
-        .gacha-modal.active .gacha-modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .gacha-modal-content h4 {
-            color: var(--accent-color);
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 900;
-        }
-
-        .gacha-modal-content .result-message {
-            font-size: 1.5em;
-            color: var(--light-text);
-            margin: 20px 0 30px;
-            font-weight: 600;
-        }
-
-        .gacha-modal-content .close-gacha {
-            background-color: var(--light-text); 
-            color: var(--dark-bg);
-            padding: 10px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background-color 0.3s;
-        }
-
-        .gacha-modal-content .close-gacha:hover {
-            background-color: var(--secondary-text);
-        }
-
-        .prize-list {
-            text-align: left;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .prize-list h5 {
-            font-size: 1.2em;
-            color: var(--light-text);
-            margin-bottom: 15px;
-        }
-
-        .prize-list ul {
-            list-style: none;
-        }
-
-        .prize-list ul li {
-            background-color: #282830;
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95em;
-        }
-        
-        /* HIDE RATE TEXT */
-        .prize-list ul li .rate {
-            display: none; 
-        }
-
-        /* Gaya Riwayat Gacha */
-        #gachaHistory {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #282830;
-            border-radius: 8px;
-            text-align: left;
-        }
-
-        #gachaHistory h4 {
-            font-size: 1.3em;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 5px;
-        }
-
-        #gachaHistory ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #gachaHistory ul li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #333333;
-            color: var(--light-text);
-            font-size: 0.9em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        #gachaHistory ul li:last-child {
-            border-bottom: none;
-        }
-
-        #gachaHistory .history-prize {
-            font-weight: 600;
-            color: #FFD700; /* Warna Emas untuk Hadiah */
-        }
-        
-        /* Tambahan CSS untuk Modal Login Admin */
-        #adminLoginModal {
-            display: none;
-            position: fixed;
-            z-index: 5000; /* Pastikan di atas semua modal lain */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.85);
-            backdrop-filter: blur(3px);
-            justify-content: center;
-            align-items: center;
-        }
-        
-        #adminLoginModal.active {
-            display: flex;
-        }
-
-        #adminLoginContent {
-            background-color: var(--dark-surface);
-            padding: 30px;
-            border-radius: 10px;
-            border: 3px solid var(--accent-color);
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 0 25px rgba(255, 107, 0, 0.7);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.3s ease-out;
-        }
-        
-        #adminLoginModal.active #adminLoginContent {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        #adminLoginContent h3 {
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-        
-        #adminLoginContent input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            background-color: #282830;
-            color: var(--light-text);
-            font-size: 1em;
-            outline: none;
-        }
-        
-        #adminLoginContent input:focus {
-            border-color: var(--accent-color);
-        }
-        
-        #loginMessage {
-            color: #FFD700;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-        }
-        
-        #adminLoginContent button {
-            background-color: var(--accent-color);
-            color: var(--dark-bg);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-        
-        #adminLoginContent button:hover {
-            background-color: #FF8533;
-        }
-
-        /* Tombol Logout Admin (Tersembunyi secara default) */
-        #adminLogoutButton {
-            display: none; /* Disembunyikan secara default */
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 1500;
-            background-color: #c70039; /* Merah untuk Logout */
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(199, 0, 57, 0.6);
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        #adminLogoutButton:hover {
-            background-color: #e51d53;
-            transform: scale(1.05);
-        }
-
-
-        /* ======================================= */
-        /* MEDIA QUERIES (RESPONSIVE FIX) */
-        /* ======================================= */
-
-        @media (max-width: 768px) {
-            
-            /* Global Padding & Spacing */
-            .navbar {
-                padding: 15px 20px;
-            }
-            
-            .section {
-                padding: 50px 20px;
-            }
-
-            /* Navbar (Sederhana di HP) */
-            .navbar {
-                flex-wrap: nowrap; 
-                justify-content: space-between;
-                height: 60px;
-            }
-            
-            .nav-links {
-                display: none; 
-            }
-            
-            .social-links {
-                position: static;
-            }
-            
-            /* Hero Section */
-            .hero {
-                height: 80vh; 
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2em; 
-            }
-            
-            .hero-content p {
-                font-size: 0.9em;
-                margin-bottom: 30px;
-                padding: 0 5px;
-            }
-            
-            .cta-button {
-                padding: 10px 30px;
-            }
-            
-            /* Sections */
-            .section h2 {
-                font-size: 2em;
-                margin-bottom: 30px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            /* Pricelist */
-            .pricelist-container {
-                flex-direction: column; 
-                gap: 20px;
-            }
-            
-            .price-card {
-                width: 100%;
-                padding: 25px 20px;
-            }
-            
-            .price-value {
-                font-size: 2.5em;
-                margin: 5px 0 20px;
-            }
-            
-            /* Discount Area di HP */
-            .discount-area {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-            }
-            .discount-area button {
-                width: 100%;
-                margin: 0;
-            }
-            
-            /* Gallery */
-            .gallery-wrapper {
-                padding: 20px;
-            }
-            
-            .gallery-title {
-                font-size: 1.4em;
-                margin-bottom: 20px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 10px;
-            }
-            
-            .gallery-item img {
-                height: 120px; 
-            }
-            
-            /* Footer */
-            .footer {
-                padding: 20px 10px;
-                font-size: 0.8em;
-            }
-            
-            .close {
-                font-size: 35px;
-                right: 15px;
-            }
-            
-            /* Back to Top di HP */
-            #backToTop {
-                width: 40px;
-                height: 40px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 1.2em;
-            }
-            
-            /* Penyesuaian panah di Mobile */
-            .prev, .next {
-                padding: 8px;
-                font-size: 16px;
-                margin-top: -30px;
-            }
-            
-            /* Penyesuaian Responsif untuk Modal Gacha */
-            .gacha-modal-content {
-                width: 90%;
-                margin: 20% auto;
-                padding: 20px;
-            }
-            .gacha-modal-content h4 {
-                font-size: 2em;
-            }
-            .gacha-modal-content .result-message {
-                font-size: 1.2em;
-            }
-            
-            /* Penyesuaian Responsif untuk Modal Promo */
-            .promo-modal-content {
-                width: 90%;
-                margin: 20% auto;
-                padding: 20px;
-            }
-            .promo-modal-content h4 {
-                font-size: 1.5em;
-            }
-
-            /* Penyesuaian Responsif untuk Modal Login Admin */
-            #adminLoginContent {
-                padding: 20px;
-            }
-            
-            #adminLogoutButton {
-                bottom: 20px;
-                left: 20px;
-                padding: 8px 12px;
-                font-size: 0.9em;
-            }
+        :root { --dark-bg:#111115; --dark-surface:#1E1E23; --light-text:#F0F0F0; --secondary-text:#AAAAAA; --accent-color:#FF6B00; --border-color:#333333; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html,body{min-height:100%}
+        body{font-family:'Poppins',sans-serif;background:var(--dark-bg);color:var(--light-text);line-height:1.6;scroll-behavior:smooth;opacity:1; padding-top:74px;}
+        /* Navbar */
+        .navbar{position:fixed;left:0;top:0;width:100%;padding:16px 16px;display:flex;justify-content:space-between;align-items:center;z-index:9999;background:rgba(17,17,21,.95);backdrop-filter:saturate(140%) blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.5)}
+        .logo a{font-size:1.4em;font-weight:700;color:var(--accent-color);text-decoration:none}
+        .nav-links{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+        .nav-links a{color:var(--light-text);text-decoration:none;margin-left:0;font-weight:500;padding:6px 8px;border-radius:6px}
+        .nav-links a:hover{color:var(--accent-color);background:rgba(255,107,0,.08)}
+        .social-links{display:flex;align-items:center}
+        .social-links a{color:var(--secondary-text);margin-left:12px;font-size:1.2em}
+        .social-links a:hover{color:var(--accent-color)}
+        /* Hero */
+        .hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background-size:cover;background-position:center}
+        .hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.6)}
+        .hero-content{position:relative;z-index:2;max-width:900px;padding:0 16px}
+        .hero-content h1{font-size:44px;font-weight:900;letter-spacing:.5px}
+        .hero-content h1 #commission-trigger{color:var(--accent-color);animation:colorPulse 1.5s infinite alternate}
+        @keyframes colorPulse{from{color:var(--accent-color)}to{color:#FFD700}}
+        .hero-content p{color:var(--secondary-text);margin:16px 0 28px}
+        .cta-button{background:var(--accent-color);color:#111;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:800;display:inline-block}
+        .section{padding:88px 16px;max-width:1200px;margin:0 auto}
+        .section h2{text-align:center;font-size:34px;margin-bottom:28px;position:relative}
+        .section h2::after{content:"";display:block;width:80px;height:3px;background:var(--accent-color);margin:12px auto 0}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+        .service-card{background:var(--dark-surface);border:1px solid var(--border-color);border-radius:10px;padding:18px;text-align:center}
+        .service-card i{font-size:1.8em;color:var(--accent-color);margin-bottom:8px}
+        .pricelist-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+        .price-card{background:var(--dark-surface);border:2px solid var(--border-color);border-radius:12px;padding:22px;text-align:center}
+        .price-card.featured{border-color:var(--accent-color);box-shadow:0 10px 30px rgba(255,107,0,.25)}
+        .price-value{font-size:28px;color:var(--accent-color);font-weight:900;margin:8px 0 16px}
+        .price-card ul{list-style:none;text-align:left}
+        .price-card li{padding:8px 0;border-bottom:1px dashed #2b2b32;color:var(--secondary-text)}
+        .gallery-wrapper{background:var(--dark-surface);border:1px solid var(--border-color);border-radius:10px;padding:16px}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+        .gallery-item{border:2px solid var(--border-color);border-radius:8px;overflow:hidden}
+        .gallery-item img{display:block;width:100%;height:180px;object-fit:cover}
+        .footer{padding:24px;text-align:center;color:var(--secondary-text)}
+        /* Promo/Gacha modal base (reused) */
+        .promo-modal{display:none;position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,.85);backdrop-filter:blur(2px)}
+        .promo-modal.active{display:block}
+        .promo-modal-content{background:var(--dark-surface);border:3px solid var(--border-color);border-radius:10px;width:min(92%,520px);margin:8% auto;padding:24px}
+        /* Web order extra */
+        .order-choice-actions{display:flex;flex-direction:column;gap:12px}
+        .order-btn{padding:12px;border:none;border-radius:8px;font-weight:800;cursor:pointer}
+        .btn-discord{background:#5865F2;color:#fff}
+        .btn-web{background:var(--accent-color);color:#111}
+        .btn-cancel{background:#333;color:#fff}
+        .form-group{margin-bottom:12px;text-align:left}
+        .form-group label{display:block;margin-bottom:6px}
+        .form-group input,.form-group select,.form-group textarea{width:100%;background:#282830;color:#fff;border:2px solid var(--border-color);border-radius:8px;padding:10px}
+        .divider{height:1px;background:var(--border-color);margin:12px 0}
+        #woSubmitBtn[disabled]{opacity:.6}
+        #woStatus{min-height:22px;margin-top:8px;color:#FFD700;font-weight:700}
+        /* Ensure hero has an image even if folder not present */
+        .hero{background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTIwMCcgaGVpZ2h0PSc2MDAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHJhZGlhbEdyYWRpZW50IGlkPSdnJyBjeD0nNTAnIGN5PSc1MCUnIHI9JzEwMCUnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyMwMDAwMDAnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMxMTExMTUnLz48L3JhZGlhbEdyYWRpZW50PjxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbGw9J3VybCgjZyknLz48dGV4dCB4PSc1MCUnIHk9JzUwJScgZmlsbD0nI2ZmZicgZm9udC1zaXplPSczMHB4JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJz5QbGFjZWhvbGRlciBCYWNrZ3JvdW5kPC90ZXh0Pjwvc3ZnPiI7)}
+        @media(max-width:1024px){
+          body{padding-top:70px}
+          .hero-content h1{font-size:40px}
+        }
+        @media(max-width:768px){
+          .navbar{padding:12px 12px}
+          .logo a{font-size:1.25em}
+          .nav-links{gap:8px;max-width:60%;justify-content:flex-end}
+          .nav-links a{padding:6px 6px;font-size:.92rem}
+          .social-links a{margin-left:8px;font-size:1.05em}
+          .hero-content h1{font-size:32px}
+          .hero-content p{font-size:.98rem}
+          .cta-button{padding:10px 20px;font-size:.95rem}
+          .section{padding:74px 14px}
+          .section h2{font-size:28px;margin-bottom:20px}
+          .services-grid{grid-template-columns:1fr 1fr;gap:12px}
+          .service-card{padding:14px}
+          .service-card i{font-size:1.5em}
+          .pricelist-container{grid-template-columns:1fr;gap:14px}
+          .price-card{padding:18px}
+          .price-value{font-size:24px}
+          .gallery-wrapper{padding:12px}
+          .gallery-grid{grid-template-columns:1fr 1fr;gap:10px}
+          .gallery-item img{height:auto;aspect-ratio:16/9}
+          .order-btn{width:100%}
+        }
+        @media(max-width:480px){
+          body{padding-top:66px}
+          .navbar{gap:10px}
+          .logo a{font-size:1.15em}
+          .nav-links{max-width:100%;overflow-x:auto;white-space:nowrap;flex-wrap:nowrap}
+          .nav-links a{display:inline-block}
+          .hero{min-height:78vh}
+          .hero-content h1{font-size:26px}
+          .hero-content p{font-size:.95rem}
+          .cta-button{padding:10px 18px;font-size:.92rem}
+          .services-grid{grid-template-columns:1fr}
+          .gallery-grid{grid-template-columns:1fr}
+          .gallery-item img{aspect-ratio:16/9}
+        }
+        /* Respect safe areas on modern phones */
+        @supports(padding:max(env(safe-area-inset-top),0px)){
+          body{ padding-top: calc(66px + env(safe-area-inset-top)); }
+          .navbar{ padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+          .promo-modal-content{ margin-top: calc(8% + env(safe-area-inset-top)); }
         }
     </style>
 </head>
-<body class="page-loaded">
+<body>
 
     <nav class="navbar">
-        <div class="logo">
-            <a href="#hero">rgch.e</a>
-        </div>
+        <div class="logo"><a href="#hero">rgch.e</a></div>
         <div class="nav-links">
             <a href="#services">Layanan</a>
             <a href="#pricelist">Pricelist</a>
             <a href="#gallery">Portofolio</a>
         </div>
         <div class="social-links">
-            <a href="https://discord.gg/UxJ5RpUqH" target="_blank" aria-label="Discord">
-                <i class="fab fa-discord"></i> 
-            </a>
-            <a href="https://www.instagram.com/rgch.e?igsh=MWtpbTdxdHdnajBnaA==" target="_blank" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
+            <a href="https://discord.gg/UxJ5RpUqH" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://www.instagram.com/rgch.e?igsh=MWtpbTdxdHdnajBnaA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
     </nav>
 
@@ -1064,798 +139,605 @@
     <section class="section" id="services">
         <h2>OUR SERVICES</h2>
         <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-magic"></i>
-                <h3>Creative Thumbnails</h3>
-                <p>Desain visual yang mencolok dan dioptimalkan untuk rasio klik (CTR) tertinggi.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-project-diagram"></i>
-                <h3>High-End Renders</h3>
-                <p>Render karakter Minecraft 3D dengan pencahayaan sinematik dan kualitas tekstur tinggi.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-check-circle"></i>
-                <h3>Reliability & Support</h3>
-                <p>Proses kerja terstruktur dan komunikasi mudah melalui Discord.</p>
-            </div>
+            <div class="service-card"><i class="fas fa-magic"></i><h3>Creative Thumbnails</h3><p>Desain visual yang mencolok dan dioptimalkan untuk rasio klik (CTR) tertinggi.</p></div>
+            <div class="service-card"><i class="fas fa-project-diagram"></i><h3>High-End Renders</h3><p>Render karakter Minecraft 3D dengan pencahayaan sinematik dan kualitas tekstur tinggi.</p></div>
+            <div class="service-card"><i class="fas fa-check-circle"></i><h3>Reliability & Support</h3><p>Proses kerja terstruktur dan komunikasi mudah melalui Discord.</p></div>
         </div>
     </section>
 
     <section class="section" id="pricelist">
         <h2>COMMISSION PRICE LIST</h2>
         <div class="pricelist-container">
-            
             <div class="price-card featured">
                 <h3>Thumbnail Design</h3>
-                <div class="price-value">
-                    Rp 10.000<span> / Thumbnail</span>
-                </div>
+                <div class="price-value">Rp 10.000<span> / Thumbnail</span></div>
                 <ul>
-                    <li><i class="fas fa-star"></i> Desain Visual Kelas A</li>
-                    <li><i class="fas fa-star"></i> Max. 3 Karakter/Skin</li>
-                    <li><i class="fas fa-star"></i> Resolusi 4K (3840x2160)</li>
-                    <li><i class="fas fa-star"></i> Custom Model</li>
+                    <li>Desain Visual Kelas A</li>
+                    <li>Max. 3 Karakter/Skin</li>
+                    <li>Resolusi 4K (3840x2160)</li>
+                    <li>Custom Model</li>
                 </ul>
                 <a href="https://discord.gg/UxJ5RpUqH" target="_blank" class="cta-button">ORDER NOW</a>
             </div>
-
             <div class="price-card">
                 <h3>Character Render</h3>
-                <div class="price-value">
-                    Rp 5.000<span> / Render</span>
-                </div>
+                <div class="price-value">Rp 5.000<span> / Render</span></div>
                 <ul>
-                    <li><i class="fas fa-star"></i> Render Karakter Penuh</li>
-                    <li><i class="fas fa-star"></i> Pencahayaan Kualitas Studio</li>
-                    <li><i class="fas fa-star"></i> Pose & Ekspresi Custom</li>
-                    <li><i class="fas fa-star"></i> File PNG Transparan</li>
+                    <li>Render Karakter Penuh</li>
+                    <li>Pencahayaan Kualitas Studio</li>
+                    <li>Pose & Ekspresi Custom</li>
+                    <li>File PNG Transparan</li>
                 </ul>
                 <a href="https://discord.gg/UxJ5RpUqH" target="_blank" class="cta-button">ORDER NOW</a>
             </div>
-
         </div>
-        
-        <div class="discount-area">
-            <button id="openDiscountModalBtn" onclick="openPromoModal('discount')">
-                <i class="fas fa-tag"></i> MASUKKAN KODE DISKON
-            </button>
-            <button id="openHistoryModalBtn" onclick="openPromoModal('history')">
-                <i class="fas fa-receipt"></i> RIWAYAT KODE PROMO
-            </button>
-            <p id="discountInfo" style="margin-top: 20px; color: #4CAF50; font-weight: 600; display: none;">
-                <i class="fas fa-check-circle"></i> <span></span>
-            </p>
-        </div>
-        
     </section>
 
     <section class="section" id="gallery">
         <h2>RECENT WORKS</h2>
-        
         <div class="gallery-wrapper">
             <h3 class="gallery-title">THUMBNAIL SHOWCASE</h3>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openModal('foto/HowToTrainYourDragon.png')">
-                    <img src="foto/HowToTrainYourDragon.png" alt="Thumbnail Minecraft 1">
-                </div>
-                <div class="gallery-item" onclick="openModal('foto/Penyihir.png')">
-                    <img src="foto/Penyihir.png" alt="Thumbnail Minecraft 2">
-                </div>
-                <div class="gallery-item" onclick="openModal('foto/Pokemon.png')">
-                    <img src="foto/Pokemon.png" alt="Thumbnail Minecraft 3">
-                </div>
-                <div class="gallery-item" onclick="openModal('foto/Horor.png')">
-                    <img src="foto/Horor.png" alt="Thumbnail Minecraft 4">
-                </div>
+                <div class="gallery-item"><img src="foto/HowToTrainYourDragon.png" alt=""></div>
+                <div class="gallery-item"><img src="foto/horor.png" alt="Thumbnail 2"></div>
+                <div class="gallery-item"><img src="foto/penyihir.png" alt="Thumbnail 3"></div>
+                <div class="gallery-item"><img src="foto/pokemon.png" alt="Thumbnail 4"></div>
             </div>
-
-            <h3 class="gallery-title" style="margin-top: 50px;">RENDER SHOWCASE</h3>
+            <h3 class="gallery-title" style="margin-top:32px">RENDER SHOWCASE</h3>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openModal('foto/ContohRender1.png')">
-                    <img src="foto/ContohRender1.png" alt="Render Minecraft 1" style="height: 300px;">
-                </div>
-                <div class="gallery-item" onclick="openModal('foto/ContohRender2.png')">
-                    <img src="foto/ContohRender2.png" alt="Render Minecraft 2" style="height: 300px;">
-                </div>
-                <div class="gallery-item" onclick="openModal('foto/ContohRender3.png')">
-                    <img src="foto/ContohRender3.png" alt="FOTO/Render Minecraft 3" style="height: 300px;">
-                </div>
-                <div class="gallery-item" onclick="openModal('foto/ContohRender4.png')">
-                    <img src="foto/ContohRender4.png" alt="Render Minecraft 4" style="height: 300px;">
-                </div>
+                <div class="gallery-item"><img src="foto/contohrender1.png" alt="Render 1"></div>
+                <div class="gallery-item"><img src="foto/contohrender2.png" alt="Render 2"></div>
+                <div class="gallery-item"><img src="foto/contohrender3.png" alt="Render 3"></div>
+                <div class="gallery-item"><img src="foto/contohrender4.png" alt="Render 4"></div>
             </div>
         </div>
     </section>
-    
-    <section class="section">
-        <div class="gacha-section">
-            <i class="fas fa-box-open" style="font-size: 3em; color: var(--accent-color); margin-bottom: 15px;"></i>
-            <h3>DAILY FREE GACHA</h3>
-            <p style="color: var(--secondary-text); margin-bottom: 25px;">Coba keberuntungan Anda untuk mendapatkan Diskon atau Render Gratis! (<span id="gachaLimitText">Hanya 1x sehari</span>).</p>
-            
-            <button id="gachaButton" onclick="openGachaModal()">
-                <i class="fas fa-bolt"></i> SPIN & WIN
-            </button>
-            
-            <div id="gachaTimer"></div>
-            
-            <div class="prize-list">
-                <h5>Daftar Hadiah</h5>
-                <ul>
-                    <li>Thumbnail Minecraft Premium GRATIS<span class="rate">0.0001%</span></li>
-                    <li>Minecraft Render GRATIS<span class="rate">0.001%</span></li>
-                    <li>Diskon 10%<span class="rate">1%</span></li>
-                    <li>Diskon 5%<span class="rate">9%</span></li>
-                    <li style="background-color: #333333; color: #aaaaaa;">Coba Lagi Nanti<span class="rate">89.9989%</span></li>
-                </ul>
-            </div>
 
-            <div id="gachaHistory">
-                <h4><i class="fas fa-history"></i> Riwayat Gacha Anda</h4>
-                <ul id="historyList">
-                    <li>Tidak ada riwayat. Mainkan Gacha untuk memulai!</li>
-                </ul>
-            </div>
-            </div>
-    </section>
-    
-    <div id="myModal" class="modal" onclick="closeModal()">
-      <span class="close" title="Tutup">&times;</span>
-      <a class="prev" id="prevBtn" onclick="plusSlides(-1); event.stopPropagation();">&#10094;</a>
-      <a class="next" id="nextBtn" onclick="plusSlides(1); event.stopPropagation();">&#10095;</a>
-      <img class="modal-content" id="img01">
-    </div>
-    
-    <div id="gachaModal" class="gacha-modal" onclick="closeGachaModal()">
-      <div class="gacha-modal-content" onclick="event.stopPropagation()">
-        <h4><i class="fas fa-gift"></i> HASIL GACHA!</h4>
-        <div id="gachaResult" class="result-message"></div>
-        
-        <p id="claimInstruction" style="font-size: 0.9em; color: var(--secondary-text); margin-top: 20px; display: none;">
-            <i class="fab fa-discord" style="color: #5865F2;"></i> **CLAIM HADIAH:** Screenshot hasil ini dan buat ticket di Discord untuk klaim hadiah Anda!
-        </p>
+    <footer class="footer"><p>&copy; All Rights Reserved.</p></footer>
 
-        <button class="close-gacha" onclick="closeGachaModal()">Tutup</button>
-      </div>
-    </div>
-    
-    <div id="discountModal" class="promo-modal" onclick="closePromoModal('discount')">
-      <div class="promo-modal-content" onclick="event.stopPropagation()">
-        <h4><i class="fas fa-ticket-alt"></i> MASUKKAN KODE DISKON</h4>
-        <p style="color: var(--secondary-text); font-size: 0.9em;">Masukkan kode unik Anda untuk mendapatkan diskon khusus (berlaku 1x).</p>
-        <input type="text" id="discountCodeInput" placeholder="Contoh: C**3*" maxlength="20">
-        <button id="applyDiscountBtn" onclick="applyDiscountCode()">APPLY KODE</button>
-        <div id="discountMessage"></div>
-        <button class="close-promo" onclick="closePromoModal('discount')">Tutup</button>
-      </div>
-    </div>
-
-    <div id="historyModal" class="promo-modal" onclick="closePromoModal('history')">
-      <div class="promo-modal-content" onclick="event.stopPropagation()">
-        <h4><i class="fas fa-history"></i> RIWAYAT KODE PROMO</h4>
-        <ul id="historyListPromo">
-            </ul>
-        <button class="close-promo" onclick="closePromoModal('history')">Tutup</button>
-      </div>
-    </div>
-    
-    <div id="adminLoginModal" class="gacha-modal">
-        <div id="adminLoginContent">
-            <h3><i class="fas fa-user-secret"></i> ADMIN LOGIN</h3>
-            <input type="text" id="adminUsername" placeholder="Username">
-            <input type="password" id="adminPassword" placeholder="Password">
-            <p id="loginMessage"></p>
-            <button onclick="attemptLogin()">LOGIN</button>
+    <!-- Order Choice Modal -->
+    <div id="orderChoiceModal" class="promo-modal">
+      <div class="promo-modal-content">
+        <h4><i class="fas fa-shopping-cart"></i> PILIH CARA PESAN</h4>
+        <p style="margin:.5rem 0 1rem;color:var(--secondary-text)"><span id="ocServiceName">Layanan</span></p>
+        <div class="order-choice-actions">
+            <button id="ocDiscordBtn" class="order-btn btn-discord"><i class="fab fa-discord"></i> Pesan lewat Discord</button>
+            <button id="ocWebBtn" class="order-btn btn-web"><i class="fas fa-globe"></i> Pesan lewat Web (Form)</button>
+            <button class="order-btn btn-cancel" onclick="document.getElementById('orderChoiceModal').classList.remove('active')">Batal</button>
         </div>
+      </div>
     </div>
 
-    <button onclick="adminLogout()" id="adminLogoutButton" title="Logout Admin">
-      <i class="fas fa-sign-out-alt"></i> Logout
-    </button>
-
-    <button onclick="scrollToTop()" id="backToTop" title="Kembali ke Atas">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-    
-    <footer class="footer">
-        <p>&copy; All Rights Reserved.</p>
-    </footer>
+    <!-- Web Order Modal -->
+    <div id="webOrderModal" class="promo-modal">
+      <div class="promo-modal-content">
+        <h4><i class="fas fa-file-signature"></i> FORM ORDER</h4>
+        <p style="margin:.5rem 0 1rem;color:var(--secondary-text)"><span id="woServiceName">-</span></p>
+        <div class="form-group"><label for="woName">Nama *</label><input id="woName" type="text" maxlength="80" placeholder="Nama lengkap kamu"></div>
+        <div class="form-group"><label for="woDiscord">Discord</label><input id="woDiscord" type="text" maxlength="60" placeholder="contoh: rafa#1234"></div>
+        <div class="form-group"><label for="woContact">Kontak Alternatif</label><input id="woContact" type="text" maxlength="120" placeholder="Email/WhatsApp"></div>
+        <div class="form-group"><label for="woService">Layanan *</label><select id="woService"><option value="Thumbnail Design">Thumbnail Design</option><option value="Character Render">Character Render</option></select></div>
+        <div class="form-group"><label for="woQty">Jumlah</label><input id="woQty" type="number" min="1" max="50" value="1"></div>
+        <div class="form-group"><label for="woDetails">Detail Kebutuhan *</label><textarea id="woDetails" rows="4" maxlength="1200" placeholder="Tema, teks, warna, pose, referensi..."></textarea></div>
+        <div class="form-group"><label for="woFile">Upload Skin Minecraft Kalian</label><input id="woFile" type="file" accept="image/*" multiple></div>
+        <div class="divider"></div>
+        <button id="woSubmitBtn" class="order-btn btn-web" onclick="submitWebOrder()"><i class="fas fa-paper-plane"></i> Kirim ke Discord</button>
+        <div id="woStatus"></div>
+        <button class="order-btn btn-cancel" style="margin-top:10px" onclick="document.getElementById('webOrderModal').classList.remove('active')">Tutup</button>
+      </div>
+    </div>
 
     <script>
-        // --- KONSTANTA BARU (UPDATED) ---
-        // Daftar kode diskon dan besaran diskonnya
-        const AVAILABLE_CODES = {
-            "ARDHA25": "5%",
-            "AKHIR2025": "10%",
-            "NATAL25": "10%"
-        };
-        
-        const PROMO_HISTORY_KEY = 'promoCodeHistory';
-
-        // --- ELEMEN BARU ---
-        const discountModal = document.getElementById('discountModal');
-        const discountModalContent = discountModal.querySelector('.promo-modal-content');
-        const historyModal = document.getElementById('historyModal');
-        const discountCodeInput = document.getElementById('discountCodeInput');
-        const discountMessage = document.getElementById('discountMessage');
-        const discountInfoDisplay = document.getElementById('discountInfo');
-        const discountInfoSpan = discountInfoDisplay.querySelector('span');
-        const historyListPromo = document.getElementById('historyListPromo');
-
-        // --- FUNGSI BARU UNTUK PROMO ---
-        
-        function openPromoModal(type) {
-            // Hapus kelas animasi saat modal dibuka kembali
-            discountModalContent.classList.remove('claim-success');
-            
-            if (type === 'discount') {
-                discountCodeInput.value = '';
-                discountMessage.textContent = '';
-                discountModal.classList.add('active');
-            } else if (type === 'history') {
-                displayPromoHistory();
-                historyModal.classList.add('active');
-            }
-        }
-
-        function closePromoModal(type) {
-            if (type === 'discount') {
-                discountModal.classList.remove('active');
-            } else if (type === 'history') {
-                historyModal.classList.remove('active');
-            }
-        }
-
-        function getPromoHistory() {
-            return JSON.parse(localStorage.getItem(PROMO_HISTORY_KEY) || '[]');
-        }
-        
-        function savePromoCode(code, status, discount) {
-            const history = getPromoHistory();
-            
-            const newEntry = {
-                code: code.toUpperCase(),
-                status: status, // 'Claimed', 'Invalid', atau 'Already Used'
-                discount: discount || '',
-                timestamp: new Date().toLocaleDateString('id-ID', {
-                    year: 'numeric', month: 'short', day: 'numeric',
-                    hour: '2-digit', minute: '2-digit'
-                })
-            };
-            
-            // Simpan riwayat
-            localStorage.setItem(PROMO_HISTORY_KEY, JSON.stringify([newEntry, ...history]));
-            
-            // Jika sukses, atur status claim untuk pemeriksaan sekali pakai
-            if (status === 'Claimed') {
-                localStorage.setItem(`claimedCode_${code.toUpperCase()}`, 'true');
-            }
-        }
-        
-        function checkClaimedStatus(code) {
-            // Periksa apakah kode ini sudah pernah di-claim
-            return localStorage.getItem(`claimedCode_${code.toUpperCase()}`) === 'true';
-        }
-
-                function applyDiscountCode() {
-            const code = discountCodeInput.value.trim().toUpperCase();
-            
-            // Reset pesan dan animasi
-            discountMessage.textContent = '';
-            discountModalContent.classList.remove('claim-success');
-
-            if (code === "") {
-                discountMessage.style.color = '#FFD700';
-                discountMessage.textContent = 'Mohon masukkan kode diskon.';
-                return;
-            }
-
-            // Cek apakah kode ada di dalam daftar AVAILABLE_CODES
-            if (AVAILABLE_CODES.hasOwnProperty(code)) {
-                
-                // Ambil jumlah diskon berdasarkan kode yang dimasukkan
-                const currentDiscountAmount = AVAILABLE_CODES[code];
-
-                if (checkClaimedStatus(code)) {
-                    // Sudah pernah di-claim
-                    discountMessage.style.color = '#FF0000'; // Merah
-                    discountMessage.textContent = `Kode "${code}" sudah pernah digunakan. (Berlaku 1x)`;
-                    savePromoCode(code, 'Already Used', currentDiscountAmount);
-                } else {
-                    // Sukses claim!
-                    
-                    // 1. Terapkan animasi
-                    discountModalContent.classList.add('claim-success');
-                    
-                    // 2. Update pesan
-                    discountMessage.style.color = '#4CAF50'; // Hijau
-                    discountMessage.textContent = `Selamat! Kode "${code}" valid. Anda mendapatkan Diskon ${currentDiscountAmount}!`;
-                    
-                    // 3. Update info di halaman utama
-                    discountInfoDisplay.style.display = 'block';
-                    discountInfoSpan.textContent = `Diskon Aktif: ${currentDiscountAmount} menggunakan kode ${code}! Tunjukkan screenshot ini di Discord.`;
-                    
-                    // 4. Simpan ke riwayat
-                    savePromoCode(code, 'Claimed', currentDiscountAmount);
-                }
-            } else {
-                // Kode tidak ditemukan di daftar
-                discountMessage.style.color = '#FF0000'; // Merah
-                discountMessage.textContent = `Kode "${code}" tidak valid atau sudah kadaluarsa.`;
-                savePromoCode(code, 'Invalid');
-            }
-            
-            // Reset warna ke default kuning setelah pesan error/peringatan
-            if (!discountMessage.textContent.includes('Selamat')) {
-                 setTimeout(() => { 
-                    discountMessage.style.color = '#FFD700'; 
-                    // Pastikan kelas animasi dihapus jika terjadi kegagalan
-                    discountModalContent.classList.remove('claim-success');
-                }, 3000);
-            }
-        }
-
-
-        function displayPromoHistory() {
-            const history = getPromoHistory();
-            historyListPromo.innerHTML = ''; // Kosongkan daftar
-
-            if (history.length === 0) {
-                historyListPromo.innerHTML = '<li style="justify-content: center;">Belum ada riwayat klaim kode promo.</li>';
-                return;
-            }
-
-            history.forEach(item => {
-                const listItem = document.createElement('li');
-                
-                let statusText = item.status;
-                let statusColor = 'var(--secondary-text)';
-                let statusIcon = '';
-
-                if (item.status === 'Claimed') {
-                    statusText = `Terklaim (${item.discount})`;
-                    statusColor = '#4CAF50';
-                    statusIcon = '<i class="fas fa-check-circle" style="margin-right: 5px;"></i>';
-                } else if (item.status === 'Already Used') {
-                    statusText = `Sudah Digunakan (${item.discount})`;
-                    statusColor = '#FFD700';
-                    statusIcon = '<i class="fas fa-exclamation-triangle" style="margin-right: 5px;"></i>';
-                } else {
-                    statusText = 'Tidak Valid';
-                    statusColor = '#FF0000';
-                    statusIcon = '<i class="fas fa-times-circle" style="margin-right: 5px;"></i>';
-                }
-
-
-                listItem.innerHTML = `
-                    <span>Kode: <strong>${item.code}</strong></span>
-                    <span style="color: ${statusColor}; font-weight: 700;">${statusIcon}${statusText}</span>
-                    <span style="color: var(--secondary-text); font-size: 0.8em;">${item.timestamp}</span>
-                `;
-                historyListPromo.appendChild(listItem);
-            });
-        }
-        
-        // --- LOGIKA ADMIN (TETAP SAMA) ---
-        var modal = document.getElementById("myModal");
-        var modalImg = document.getElementById("img01");
-        
-        // --- ADMIN LOGIN LOGIC ---
-        const ADMIN_USERNAME = "EllRG";
-        const ADMIN_PASSWORD = "RGCHAJAYTTA";
-        const ADMIN_LOGGED_IN_KEY = 'adminLoggedIn';
-        const adminLogoutButton = document.getElementById('adminLogoutButton');
-        const adminLoginModal = document.getElementById('adminLoginModal');
-        const loginMessage = document.getElementById('loginMessage');
-        const gachaLimitText = document.getElementById('gachaLimitText');
-        
-        let commissionClickCount = 0;
-        const commissionTrigger = document.getElementById('commission-trigger');
-
-        commissionTrigger.addEventListener('click', function() {
-            commissionClickCount++;
-            if (commissionClickCount >= 5) {
-                showAdminLogin();
-                commissionClickCount = 0; // Reset
-            }
-        });
-        
-        function showAdminLogin() {
-            if (!localStorage.getItem(ADMIN_LOGGED_IN_KEY)) {
-                loginMessage.textContent = '';
-                document.getElementById('adminUsername').value = '';
-                document.getElementById('adminPassword').value = '';
-                adminLoginModal.classList.add('active');
-            } else {
-                 loginMessage.textContent = 'Anda sudah login sebagai Admin.';
-                 adminLoginModal.classList.add('active');
-            }
-        }
-        
-        function attemptLogin() {
-            const username = document.getElementById('adminUsername').value;
-            const password = document.getElementById('adminPassword').value;
-            
-            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-                localStorage.setItem(ADMIN_LOGGED_IN_KEY, 'true');
-                adminLoginModal.classList.remove('active');
-                loginMessage.textContent = '';
-                checkAdminStatus(); // Update status gacha dan tombol
-                alert('Login Admin Berhasil! Gacha sekarang tidak terbatas.');
-            } else {
-                loginMessage.textContent = 'Username atau Password salah!';
-            }
-        }
-        
-        function adminLogout() {
-            if (confirm('Apakah Anda yakin ingin logout sebagai Admin?')) {
-                localStorage.removeItem(ADMIN_LOGGED_IN_KEY);
-                checkAdminStatus(); // Update status gacha dan tombol
-                alert('Logout Admin Berhasil.');
-            }
-        }
-
-        function checkAdminStatus() {
-            const isAdmin = localStorage.getItem(ADMIN_LOGGED_IN_KEY) === 'true';
-            
-            if (isAdmin) {
-                adminLogoutButton.style.display = 'block';
-                gachaLimitText.textContent = "Tidak terbatas untuk Admin";
-                clearInterval(window.gachaInterval); // Hentikan timer
-                gachaButton.disabled = false; // Aktifkan tombol
-                gachaButton.innerHTML = '<i class="fas fa-bolt"></i> SPIN & WIN';
-                gachaTimerDisplay.textContent = "Mode Admin: Gacha siap digunakan berkali-kali.";
-            } else {
-                adminLogoutButton.style.display = 'none';
-                gachaLimitText.textContent = "Hanya 1x sehari";
-                updateGachaTimer(); // Lanjutkan timer/cek cooldown normal
-                if (!window.gachaInterval) { // Hanya set interval jika belum diset
-                   window.gachaInterval = setInterval(updateGachaTimer, 1000); 
-                }
-            }
-        }
-        
-        adminLoginModal.addEventListener('click', function(event) {
-            if (event.target === adminLoginModal) {
-                adminLoginModal.classList.remove('active');
-            }
-        });
-
-        // --- END ADMIN LOGIN LOGIC ---
-
-        // Animasi Body Load
-        document.addEventListener("DOMContentLoaded", function() {
-            document.body.classList.add('page-loaded'); 
-            checkAdminStatus(); // Panggil saat memuat untuk menginisialisasi status admin
-            displayGachaHistory(); // Panggil untuk menampilkan riwayat Gacha
-        });
-
-        // Fungsionalitas Galeri Modal
-        const allGalleryItems = [
-            ...document.querySelectorAll('#gallery .gallery-grid:nth-child(2) .gallery-item img'),
-            ...document.querySelectorAll('#gallery .gallery-grid:nth-child(4) .gallery-item img')
-        ];
-        
-        const allImageSources = allGalleryItems.map(img => img.src);
-        let currentSlideIndex = 0; 
-        
-        function openModal(imgSrc) {
-          const clickedFileName = imgSrc.split('/').pop();
-          currentSlideIndex = allImageSources.findIndex(src => src.includes(clickedFileName));
-
-          modal.style.display = "block";
-          modalImg.src = imgSrc;
-          modalImg.classList.add('modal-active');
-        }
-
-        function plusSlides(n) {
-          if (modal.style.display === "block") {
-              showSlides(currentSlideIndex += n);
-          }
-        }
-
-        function showSlides(n) {
-          if (n >= allImageSources.length) {
-            currentSlideIndex = 0; 
-          }    
-          if (n < 0) {
-            currentSlideIndex = allImageSources.length - 1; 
-          }
-          
-          modalImg.classList.remove('modal-active'); 
-          
-          setTimeout(() => {
-            modalImg.src = allImageSources[currentSlideIndex];
-            modalImg.classList.add('modal-active'); 
-          }, 10); 
-        }
-
-        function closeModal() {
-          modalImg.classList.remove('modal-active');
-          modal.style.display = "none";
-        }
-        
-        // Logika untuk Keyboard Navigation
-        document.addEventListener('keydown', function(e) {
-            if (modal.style.display === "block") {
-                if (e.key === "ArrowLeft") {
-                    plusSlides(-1);
-                } else if (e.key === "ArrowRight") {
-                    plusSlides(1);
-                } else if (e.key === "Escape") {
-                    closeModal();
-                }
-            }
-             // Tambahkan Escape untuk Modal Promo
-            if (e.key === "Escape") {
-                 closePromoModal('discount');
-                 closePromoModal('history');
-            }
-        });
-
-        // Tutup modal jika user mengklik area abu-abu di luar gambar (kecuali panah)
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            closeModal();
-          }
-          if (event.target == discountModal) {
-            closePromoModal('discount');
-          }
-          if (event.target == historyModal) {
-            closePromoModal('history');
-          }
-        }
-        
-        // Fungsionalitas Navigasi Smooth Scroll
-        document.querySelectorAll('.nav-links a[href^="#"], .logo a[href^="#"], .cta-button[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        /* --- Fungsi Auto Ganti Background Hero --- */
-        const heroSection = document.getElementById('hero');
-        
-        // Daftar gambar background Anda. PASTIKAN PATH-NYA BENAR.
-        const backgroundImages = [
-            'foto/HowToTrainYourDragon.png', 
-            'foto/Penyihir.png',   
-            'foto/Pokemon.png',   
-            'foto/Horor.png'    
-        ];
-        
-        let currentImageIndex = 0;
-        
-        function changeBackground() {
-            currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
-            heroSection.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
-        }
-
-        heroSection.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
-        setInterval(changeBackground, 5000);
-        
-        // Fungsionalitas Tombol Back to Top
-        let mybutton = document.getElementById("backToTop");
-
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-          if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-            mybutton.style.display = "block";
-          } else {
-            mybutton.style.display = "none";
-          }
-        }
-
-        function scrollToTop() {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+      // Hook ORDER NOW buttons to show choice modal
+      (function(){
+        const orderBtns = document.querySelectorAll('#pricelist .price-card .cta-button');
+        const ocModal = document.getElementById('orderChoiceModal');
+        const ocServiceName = document.getElementById('ocServiceName');
+        const woServiceName = document.getElementById('woServiceName');
+        const ocDiscordBtn = document.getElementById('ocDiscordBtn');
+        const ocWebBtn = document.getElementById('ocWebBtn');
+        let lastDiscordURL = '';
+        orderBtns.forEach(btn=>{
+          btn.addEventListener('click',e=>{
+            e.preventDefault();
+            const card = btn.closest('.price-card');
+            const service = card? (card.querySelector('h3')?.textContent?.trim()||'Layanan'):'Layanan';
+            lastDiscordURL = btn.getAttribute('href')||'#';
+            ocServiceName.textContent = service;
+            woServiceName.textContent = service;
+            const sel = document.getElementById('woService');
+            if (sel){ for (let i=0;i<sel.options.length;i++){ if(sel.options[i].value.toLowerCase()===service.toLowerCase()){ sel.selectedIndex=i; break; } } }
+            ocDiscordBtn.onclick = ()=>{ window.open(lastDiscordURL,'_blank','noopener'); ocModal.classList.remove('active'); };
+            ocWebBtn.onclick = ()=>{ ocModal.classList.remove('active'); resetWebOrderForm(); document.getElementById('webOrderModal').classList.add('active'); };
+            ocModal.classList.add('active');
           });
-        }
-        
-        window.scrollToTop = scrollToTop;
-        
-        /* -------------------------------------------------------- */
-        /* --- Fungsionalitas Daily Gacha --- */
-        /* -------------------------------------------------------- */
-        
-        const gachaButton = document.getElementById('gachaButton');
-        const gachaTimerDisplay = document.getElementById('gachaTimer');
-        const gachaModal = document.getElementById('gachaModal');
-        const gachaResultDisplay = document.getElementById('gachaResult');
-        const claimInstruction = document.getElementById('claimInstruction');
-        const historyList = document.getElementById('historyList'); // Elemen untuk riwayat
-
-        const LAST_GACHA_KEY = 'lastGachaTimestamp';
-        const GACHA_HISTORY_KEY = 'gachaHistory'; // Kunci baru untuk riwayat
-        const COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 jam dalam milidetik
-
-        // Daftar hadiah dan peluangnya (dalam desimal) - Peluang tetap sama
-        const prizes = [
-            { name: "Thumbnail Minecraft Premium GRATIS!", isWinning: true, chance: 0.000001 }, 
-            { name: "Minecraft Render GRATIS!", isWinning: true, chance: 0.00001 },           
-            { name: "Diskon 10% untuk semua layanan!", isWinning: true, chance: 0.01 },        
-            { name: "Diskon 5% untuk semua layanan!", isWinning: true, chance: 0.09 },          
-            { name: "Coba Lagi Nanti", isWinning: false, chance: 0.899989 }                      
-        ];
-        
-        function getPrize() {
-            const rand = Math.random(); 
-            let cumulativeChance = 0;
-
-            for (const prize of prizes) {
-                cumulativeChance += prize.chance;
-                if (rand < cumulativeChance) {
-                    return prize; 
-                }
-            }
-            return { name: "Coba Lagi Nanti", isWinning: false };
-        }
-        
-        // Fungsi BARU: Menyimpan hasil gacha ke localStorage
-        function saveGachaResult(result) {
-            const history = JSON.parse(localStorage.getItem(GACHA_HISTORY_KEY) || '[]');
-            
-            // Batasi riwayat hanya 5 entri terbaru
-            const newHistory = [{
-                prize: result.name,
-                timestamp: new Date().getTime(),
-                isWinning: result.isWinning
-            }, ...history].slice(0, 5); 
-            
-            localStorage.setItem(GACHA_HISTORY_KEY, JSON.stringify(newHistory));
-            displayGachaHistory(); // Panggil untuk memperbarui tampilan riwayat
-        }
-
-        // Fungsi BARU: Menampilkan riwayat gacha
-        function displayGachaHistory() {
-            const history = JSON.parse(localStorage.getItem(GACHA_HISTORY_KEY) || '[]');
-            historyList.innerHTML = ''; // Kosongkan daftar
-
-            if (history.length === 0) {
-                historyList.innerHTML = '<li>Tidak ada riwayat. Mainkan Gacha untuk memulai!</li>';
-                return;
-            }
-
-            history.forEach(item => {
-                const date = new Date(item.timestamp);
-                const dateString = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-                
-                const listItem = document.createElement('li');
-                
-                // Tambahkan kelas untuk hadiah yang menang
-                const prizeSpan = `<span class="history-prize" style="color: ${item.isWinning ? '#FFD700' : 'var(--secondary-text)'};">${item.prize}</span>`;
-                
-                listItem.innerHTML = `${prizeSpan}<span>${dateString}</span>`;
-                historyList.appendChild(listItem);
-            });
-        }
-        
-        function startGacha() {
-            const isAdmin = localStorage.getItem(ADMIN_LOGGED_IN_KEY) === 'true';
-
-            // 1. Reset tampilan modal
-            claimInstruction.style.display = 'none'; 
-            
-            // Nonaktifkan tombol hanya jika BUKAN admin
-            if (!isAdmin) {
-                gachaButton.disabled = true;
-            }
-            
-            gachaButton.innerHTML = '<i class="fas fa-sync fa-spin"></i> SEDANG MENGUNDI...';
-
-            setTimeout(() => {
-                const resultObj = getPrize(); 
-                const resultName = resultObj.name;
-                
-                let message = `<i class="fas fa-trophy" style="color: #FFD700; margin-right: 10px;"></i> Anda mendapatkan: <strong>${resultName}</strong>!`;
-                
-                if (resultObj.isWinning) { 
-                    claimInstruction.style.display = 'block'; 
-                } else {
-                    // Jika "Coba Lagi Nanti"
-                    message = `<i class="fas fa-sad-tear" style="color: #aaaaaa; margin-right: 10px;"></i> ${resultName}. Coba lagi nanti!`;
-                }
-
-                gachaResultDisplay.innerHTML = message;
-                
-                // 2. Simpan hasil Gacha ke riwayat (Dilakukan untuk SEMUA pengguna, termasuk Admin)
-                saveGachaResult(resultObj);
-
-                // 3. Simpan timestamp HANYA jika BUKAN admin
-                if (!isAdmin) {
-                    const now = new Date().getTime();
-                    localStorage.setItem(LAST_GACHA_KEY, now.toString());
-                } else {
-                    // Admin: Aktifkan kembali tombol setelah selesai
-                    gachaButton.disabled = false;
-                    gachaButton.innerHTML = '<i class="fas fa-bolt"></i> SPIN & WIN';
-                }
-                
-                // 4. Tampilkan modal
-                gachaModal.classList.add('active');
-                
-                // 5. Mulai timer (jika bukan admin)
-                if (!isAdmin) {
-                    updateGachaTimer();
-                }
-
-            }, 2000); 
-        }
-        
-        function openGachaModal() {
-            const isAdmin = localStorage.getItem(ADMIN_LOGGED_IN_KEY) === 'true';
-            
-            if (isAdmin || !gachaButton.disabled) {
-                startGacha();
-            } else {
-                 // Jika bukan admin dan cooldown aktif
-                 claimInstruction.style.display = 'none'; 
-                 gachaResultDisplay.innerHTML = `<i class="fas fa-clock" style="color: var(--accent-color); margin-right: 10px;"></i> Anda sudah melakukan Gacha hari ini. Tunggu hingga waktu berakhir!`;
-                 gachaModal.classList.add('active');
-            }
-        }
-        
-        function closeGachaModal() {
-            gachaModal.classList.remove('active');
-        }
-        
-        // Fungsi untuk mengupdate timer cooldown
-        function updateGachaTimer() {
-            // Hentikan jika admin sedang login
-            if (localStorage.getItem(ADMIN_LOGGED_IN_KEY) === 'true') {
-                 // Pastikan tidak ada interval yang berjalan saat admin aktif
-                 if (window.gachaInterval) {
-                    clearInterval(window.gachaInterval);
-                    window.gachaInterval = null;
-                 }
-                 return; 
-            }
-
-            const lastGachaTime = parseInt(localStorage.getItem(LAST_GACHA_KEY) || 0);
-            const now = new Date().getTime();
-            const timeElapsed = now - lastGachaTime;
-            
-            if (timeElapsed >= COOLDOWN_MS) {
-                // Cooldown selesai
-                gachaButton.disabled = false;
-                gachaButton.innerHTML = '<i class="fas fa-bolt"></i> SPIN & WIN';
-                gachaTimerDisplay.textContent = "Gacha siap! Klik tombol di atas.";
-            } else {
-                // Cooldown masih berjalan
-                gachaButton.disabled = true;
-                gachaButton.textContent = "COOLDOWN";
-                
-                const timeLeft = COOLDOWN_MS - timeElapsed;
-                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                
-                gachaTimerDisplay.textContent = `Gacha tersedia dalam: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }
-        }
-
-        // Jalankan timer saat halaman dimuat (untuk non-admin)
-        if (localStorage.getItem(ADMIN_LOGGED_IN_KEY) !== 'true') {
-            updateGachaTimer(); 
-            window.gachaInterval = setInterval(updateGachaTimer, 1000); 
-        }
-        
-        // Tutup modal Gacha
-        window.addEventListener('click', function(event) {
-            if (event.target === gachaModal) {
-                closeGachaModal();
-            }
         });
-        
-        window.openPromoModal = openPromoModal;
-        window.applyDiscountCode = applyDiscountCode;
-        
+        // Close by clicking overlay
+        ocModal.addEventListener('click', (ev)=>{ if(ev.target===ocModal) ocModal.classList.remove('active'); });
+        document.getElementById('webOrderModal').addEventListener('click',(ev)=>{ if(ev.target===ev.currentTarget) ev.currentTarget.classList.remove('active'); });
+        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ ocModal.classList.remove('active'); document.getElementById('webOrderModal').classList.remove('active'); } });
+      })();
+
+      // ===================== WEBHOOK SENDER (SEPARATED) =====================
+      // 👉 Ganti hanya bagian ini sesuai permintaan: webhook order & rating dipisah.
+      // - DISCORD_ORDER_WEBHOOK_URL: untuk kirim pesanan (Order)
+      // - DISCORD_RATING_WEBHOOK_URL: untuk kirim rating/ulasan (Rating)
+      // Catatan: variabel DISCORD_WEBHOOK_URL tetap ada agar kode lama tidak diubah.
+
+      const DISCORD_ORDER_WEBHOOK_URL = 'https://discord.com/api/webhooks/1464395990290268161/X7h04h2DOFaxctcbhD2E5Lx1Xg1xE5h9A1iZSS9uWZtWbyoVZmC8OR4vJSIBy6RtCIFc';
+      const DISCORD_RATING_WEBHOOK_URL = 'https://discord.com/api/webhooks/1464404619412373719/8oLfk55of-qQ1RoJPc3wkotQfMDKmkcy4UWu8O92dUKXN43RkcobTDQ8kaV8kEeMV128';
+
+      // Alias kompatibilitas (jangan kosong & jangan mengandung 'PASTE_WEBHOOK' agar lolos validasi yang sudah ada)
+      const DISCORD_WEBHOOK_URL = 'USE_DISPATCHER';
+
+      // Dispatcher: intercept "fetch" ke DISCORD_WEBHOOK_URL dan teruskan ke webhook yang tepat
+      (function(){
+        const originalFetch = window.fetch.bind(window);
+        function pickTargetByPayload(init){
+          // Default ke ORDER kalau tidak bisa dideteksi
+          let target = DISCORD_ORDER_WEBHOOK_URL;
+          try{
+            if(!init) return target;
+            // JSON body
+            const ct = init.headers && (init.headers['Content-Type'] || init.headers['content-type'] || '');
+            if(ct && String(ct).includes('application/json') && typeof init.body === 'string'){
+              const payload = JSON.parse(init.body);
+              const title = payload?.embeds?.[0]?.title || '';
+              const username = payload?.username || '';
+              if(/rating/i.test(title) || /rating/i.test(username)) target = DISCORD_RATING_WEBHOOK_URL;
+              return target;
+            }
+            // FormData body (dengan files)
+            if(init.body instanceof FormData){
+              const pj = init.body.get('payload_json');
+              if(pj){
+                const payload = JSON.parse(pj);
+                const title = payload?.embeds?.[0]?.title || '';
+                const username = payload?.username || '';
+                if(/rating/i.test(title) || /rating/i.test(username)) target = DISCORD_RATING_WEBHOOK_URL;
+              }
+              return target;
+            }
+          }catch(e){ /* fallback ke ORDER */ }
+          return target;
+        }
+        window.fetch = function(input, init){
+          try{
+            if(typeof input === 'string' && input === DISCORD_WEBHOOK_URL){
+              const target = pickTargetByPayload(init);
+              if(!target || /PASTE_.*_WEBHOOK/i.test(target)){
+                return Promise.reject(new Error('Webhook target belum dikonfigurasi.'));
+              }
+              return originalFetch(target, init);
+            }
+          }catch(e){ /* abaikan & teruskan */ }
+          return originalFetch(input, init);
+        };
+      })();
+
+      function sanitizeText(str,max){ if(!str) return ''; const s=String(str).replace(/\s+/g,' ').trim(); return (max && s.length>max)? s.slice(0,max-3)+'...':s; }
+      function resetWebOrderForm(){ ['woName','woDiscord','woContact','woDetails'].forEach(id=>{const el=document.getElementById(id); if(el) el.value='';}); const qty=document.getElementById('woQty'); if(qty) qty.value=1; const f=document.getElementById('woFile'); if(f) f.value=''; const st=document.getElementById('woStatus'); if(st) st.textContent=''; }
+
+      async function submitWebOrder(){
+        const btn = document.getElementById('woSubmitBtn');
+        const statusEl = document.getElementById('woStatus');
+        const name = sanitizeText(document.getElementById('woName').value,80);
+        const discord = sanitizeText(document.getElementById('woDiscord').value,60);
+        const contact = sanitizeText(document.getElementById('woContact').value,120);
+        const service = sanitizeText(document.getElementById('woService').value,60);
+        const qty = Math.max(1, Math.min(50, parseInt(document.getElementById('woQty').value||'1',10)));
+        const details = sanitizeText(document.getElementById('woDetails').value,1200);
+        const files = (document.getElementById('woFile').files)||[];
+        if(!name){ statusEl.style.color='#ff6b6b'; statusEl.textContent='Nama wajib diisi.'; return; }
+        if(!details){ statusEl.style.color='#ff6b6b'; statusEl.textContent='Detail kebutuhan wajib diisi.'; return; }
+        if(!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL.includes('PASTE_WEBHOOK')){ statusEl.style.color='#ff6b6b'; statusEl.textContent='Webhook Discord belum diset.'; return; }
+        btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Mengirim...'; statusEl.style.color='#FFD700'; statusEl.textContent='Mengirim ke Discord...';
+        const orderId = 'ORD-'+Date.now().toString(36).toUpperCase();
+        const embed = { title:`Pesanan Baru • ${service}`, color:0xFF6B00, fields:[
+            {name:'Order ID', value:'`'+orderId+'`', inline:true},
+            {name:'Jumlah', value:String(qty), inline:true},
+            {name:'Nama', value:name||'-', inline:false},
+            {name:'Discord', value:discord||'-', inline:true},
+            {name:'Kontak Alternatif', value:contact||'-', inline:true},
+            {name:'Detail', value:details||'-', inline:false}
+        ], timestamp:new Date().toISOString(), footer:{text:'rgch.e • Web Order'} };
+        const payload = { username:'rgch.e Orders', content:'**Pesanan Web Baru Masuk!**', embeds:[embed] };
+        try{
+          let res;
+          if(files.length>0){
+            const form = new FormData();
+            form.append('payload_json', JSON.stringify(payload));
+            const maxAttach = Math.min(files.length,3);
+            for(let i=0;i<maxAttach;i++){ form.append(`files[${i}]`, files[i], files[i].name); }
+            res = await fetch(DISCORD_WEBHOOK_URL,{method:'POST', body:form});
+          } else {
+            res = await fetch(DISCORD_WEBHOOK_URL,{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+          }
+          if(!res.ok) throw new Error('HTTP '+res.status);
+          statusEl.style.color='#4CAF50'; statusEl.innerHTML='<i class="fas fa-check-circle"></i> Pesanan terkirim! ID: <b>'+orderId+'</b>';
+          setTimeout(()=>{ document.getElementById('webOrderModal').classList.remove('active'); resetWebOrderForm(); }, 1000);
+        }catch(err){ console.error(err); statusEl.style.color='#ff6b6b'; statusEl.innerHTML='<i class="fas fa-times-circle"></i> Gagal kirim. '+(String(err).includes('Failed to fetch')?'Kemungkinan CORS. ':'')+'Silakan coba Pesan via Discord.'; }
+        finally{ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> Kirim ke Discord'; }
+      }
+      window.submitWebOrder = submitWebOrder;
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id && id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth'}); } }); });
     </script>
+
+    <!-- =====================  ADDITIONS (do not modify existing code)  ===================== -->
+    <style>
+      /* Mobile-friendly modal: prevent content from being too tall on phones */
+      @media (max-width: 640px) {
+        .promo-modal-content{ max-height: 78vh; overflow:auto; margin:14% auto; padding:16px; }
+        .form-group input, .form-group select, .form-group textarea{ font-size:16px; }
+        #woDetails{ min-height:96px; }
+      }
+      /* FAQ styles */
+      #faq{ padding-top:80px; }
+      .faq-container{ max-width:900px; margin:0 auto; }
+      .faq-item{ background:var(--dark-surface); border:1px solid var(--border-color); border-radius:10px; margin-bottom:12px; overflow:hidden; }
+      .faq-q{ width:100%; text-align:left; background:transparent; color:var(--light-text); padding:16px 18px; border:none; display:flex; justify-content:space-between; align-items:center; font-weight:700; cursor:pointer; }
+      .faq-q .icon{ transition: transform .25s ease; color:var(--accent-color); }
+      .faq-a{ max-height:0; overflow:hidden; transition:max-height .3s ease; padding:0 18px; color:var(--secondary-text); }
+      .faq-item.active .faq-a{ padding:0 18px 16px; }
+      .faq-item.active .faq-q .icon{ transform:rotate(90deg); }
+      @media(max-width:768px){
+        #faq{ padding-top:66px; }
+        .faq-q{ padding:14px 14px; }
+      }
+    </style>
+
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-q">Berapa lama pengerjaan?<span class="icon"><i class="fas fa-chevron-right"></i></span></button>
+          <div class="faq-a"><p>Rata-rata 1–3 hari kerja per pesanan, tergantung kompleksitas dan antrian. Untuk kebutuhan urgent, chat dulu via Discord.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Apa saja yang perlu saya siapkan?<span class="icon"><i class="fas fa-chevron-right"></i></span></button>
+          <div class="faq-a"><p>Jelaskan tema, teks utama, warna dominan, pose/ekspresi, dan kirim referensi (skin, logo, contoh style). Makin detail, makin cepat hasilnya.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Revisi bagaimana?<span class="icon"><i class="fas fa-chevron-right"></i></span></button>
+          <div class="faq-a"><p>Termasuk 1–2 kali revisi minor. Revisi besar (ganti konsep) bisa dikenakan biaya tambahan sesuai tingkat perubahan.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Format file dan kualitas?<span class="icon"><i class="fas fa-chevron-right"></i></span></button>
+          <div class="faq-a"><p>Thumbnail dikirim JPEG/PNG hingga 4K. Render karakter dikirim PNG background transparan resolusi tinggi.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Metode pembayaran?<span class="icon"><i class="fas fa-chevron-right"></i></span></button>
+          <div class="faq-a"><p>Bisa via e-wallet/bank lokal. Detail pembayaran akan dikirimkan via Discord setelah order dikonfirmasi.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Add FAQ link to navbar without editing existing markup
+      (function(){
+        const navLinks = document.querySelector('.nav-links');
+        if(navLinks && !navLinks.querySelector('a[href="#faq"]')){
+          const a = document.createElement('a');
+          a.href = '#faq'; a.textContent = 'FAQ';
+          navLinks.appendChild(a);
+        }
+      })();
+
+      // Simple accordion behavior for FAQ
+      (function(){
+        const items = document.querySelectorAll('#faq .faq-item');
+        items.forEach(item=>{
+          const q = item.querySelector('.faq-q');
+          const a = item.querySelector('.faq-a');
+          if(!q || !a) return;
+          q.addEventListener('click', ()=>{
+            const expanded = item.classList.contains('active');
+            // collapse others
+            document.querySelectorAll('#faq .faq-item.active').forEach(it=>{
+              if(it!==item){ it.classList.remove('active'); it.querySelector('.faq-a').style.maxHeight = '0px'; }
+            });
+            // toggle current
+            if(expanded){
+              item.classList.remove('active');
+              a.style.maxHeight = '0px';
+            } else {
+              item.classList.add('active');
+              a.style.maxHeight = a.scrollHeight + 'px';
+            }
+          });
+        });
+        // Open first item by default
+        const first = document.querySelector('#faq .faq-item');
+        if(first){
+          first.classList.add('active');
+          const a = first.querySelector('.faq-a');
+          if(a) a.style.maxHeight = a.scrollHeight + 'px';
+        }
+      })();
+
+      // Ensure web order modal content is scrollable if viewport is short
+      (function(){
+        const w = document.getElementById('webOrderModal');
+        const adjust = ()=>{
+          const c = w?.querySelector('.promo-modal-content');
+          if(!c) return;
+          const vh = window.innerHeight;
+          const max = Math.max(360, Math.floor(vh*0.82));
+          c.style.maxHeight = max + 'px';
+          c.style.overflow = 'auto';
+        };
+        window.addEventListener('resize', adjust);
+        window.addEventListener('orientationchange', adjust);
+        adjust();
+      })();
+    </script>
+
+    <!-- =====================  ADDITIONS 2 (Rating + Worker Profile) — DO NOT MODIFY EXISTING CODE  ===================== -->
+    <style>
+      /* TEAM / WORKER PROFILE */
+      #team{ padding-top:80px; }
+      .team-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+      .profile-card{ background:var(--dark-surface); border:1px solid var(--border-color); border-radius:12px; padding:18px; display:flex; gap:14px; align-items:center; }
+      .profile-avatar{ width:68px; height:68px; border-radius:10px; overflow:hidden; border:2px solid #2b2b32; flex:0 0 auto; }
+      .profile-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+      .profile-info h3{ margin:0; font-size:18px; }
+      .profile-info p{ margin:4px 0 0; color:var(--secondary-text); font-size:14px; }
+      .trusted-badge{ display:inline-flex; align-items:center; gap:6px; background:#1f2a1f; color:#7CFC7C; border:1px solid #2f5f2f; font-weight:800; padding:4px 8px; border-radius:999px; font-size:12px; margin-top:8px; }
+      .mini-stats{ display:flex; gap:12px; margin-top:10px; color:var(--secondary-text); font-size:12px; }
+      .mini-stats span{ display:flex; align-items:center; gap:6px; }
+
+      /* RATING SECTION */
+      #rating{ padding-top:80px; }
+      .rating-wrapper{ max-width:900px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:20px; }
+      @media(max-width: 940px){ .rating-wrapper{ grid-template-columns:1fr; } }
+      .rating-card{ background:var(--dark-surface); border:1px solid var(--border-color); border-radius:12px; padding:18px; }
+      .stars{ display:flex; gap:8px; font-size:28px; }
+      .star{ color:#555; cursor:pointer; transition:transform .08s ease, color .15s ease; }
+      .star:hover{ transform:translateY(-2px) scale(1.05); }
+      .star.active{ color:#FFD700; }
+      .rating-form .form-group{ margin-bottom:14px; }
+      .rating-status{ min-height:22px; margin-top:6px; font-weight:700; }
+      .rating-badge{ display:inline-flex; align-items:center; gap:6px; background:#2a1f1f; color:#ffaaaa; border:1px solid #5f2f2f; font-weight:700; padding:4px 8px; border-radius:999px; font-size:12px; }
+      .testimonial-sample{ background:#18181d; border:1px dashed #2b2b32; padding:14px; border-radius:10px; color:var(--secondary-text); font-size:14px; }
+
+      @media(max-width:768px){
+        #team{ padding-top:66px; }
+        #rating{ padding-top:66px; }
+        .profile-card{ padding:14px; }
+        .mini-stats{ flex-wrap:wrap; gap:8px; }
+      }
+    </style>
+
+    <!-- TEAM / WORKER PROFILE SECTION -->
+    <section class="section" id="team">
+      <h2>PROFIL WORKER</h2>
+      <div class="team-grid">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <!-- Neutral SVG avatar (no external file needed) -->
+            <img alt="Avatar rgch.e" src="foto/550727a969869cfe604843e2c38e6e89 (1).jpg" />
+          </div>
+          <div class="profile-info">
+            <h3>rgch.e <span class="trusted-badge"><i class="fas fa-shield-check"></i> Trusted</span></h3>
+            <p>Thumbnail Artist & 3D Render • Minecraft Focused</p>
+            <div class="mini-stats">
+              <span><i class="fas fa-clipboard-check" style="color:#FFD700"></i> 20+ order selesai</span>
+              <span><i class="fas fa-star" style="color:#FFD700"></i> 4.5/5 rating</span>
+              <span><i class="fab fa-discord" style="color:#5865F2"></i> Fast Response</span>
+            </div>
+          </div>
+        </div>
+        <!-- Tambah profil lain di sini jika diperlukan -->
+      </div>
+    </section>
+
+    <!-- RATING SECTION -->
+    <section class="section" id="rating">
+      <h2>BERI RATING & ULASAN</h2>
+      <div class="rating-wrapper">
+        <div class="rating-card rating-form">
+          <div class="form-group">
+            <label for="rtName">Nama</label>
+            <input id="rtName" type="text" maxlength="80" placeholder="Boleh kosong/anonim">
+          </div>
+          <div class="form-group">
+            <label for="rtDiscord">Discord</label>
+            <input id="rtDiscord" type="text" maxlength="60" placeholder="contoh: rafa#1234 (opsional)">
+          </div>
+          <div class="form-group">
+            <label for="rtService">Layanan</label>
+            <select id="rtService">
+              <option value="Thumbnail Design">Thumbnail Design</option>
+              <option value="Character Render">Character Render</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Rating *</label>
+            <div id="rtStars" class="stars" aria-label="Pilih rating 1-5 bintang"></div>
+          </div>
+          <div class="form-group">
+            <label for="rtComment">Ulasan</label>
+            <textarea id="rtComment" rows="4" maxlength="600" placeholder="Ceritakan pengalamanmu (opsional)"></textarea>
+          </div>
+          <button id="rtSubmit" class="order-btn btn-web" type="button"><i class="fas fa-paper-plane"></i> Kirim Rating</button>
+          <div id="rtStatus" class="rating-status"></div>
+          <p style="margin-top:8px; color:var(--secondary-text); font-size:12px">*Pengiriman langsung ke server Discord melalui webhook.</p>
+        </div>
+
+        <div class="rating-card">
+          <h3 style="margin-bottom:10px">Contoh Ulasan Bagus</h3>
+          <div class="testimonial-sample">
+            <p><span class="rating-badge"><i class="fas fa-star"></i> 5/5</span> "Desainnya tajam, warna nendang, dan CTR naik signifikan. Revisi cepat & ramah!"</p>
+          </div>
+          <div style="margin-top:14px; color:var(--secondary-text); font-size:14px">
+            <p><i class="fas fa-info-circle" style="color:#FFD700"></i> Kami sangat menghargai review jujur untuk membantu klien lain memilih layanan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Inject nav links for Team & Rating (and add smooth scroll just for these links)
+      (function(){
+        const navLinks = document.querySelector('.nav-links');
+        const addLink = (hash, text) => {
+          if(navLinks && !navLinks.querySelector(`a[href='${hash}']`)){
+            const a = document.createElement('a'); a.href = hash; a.textContent = text; navLinks.appendChild(a);
+            a.addEventListener('click', (e)=>{ e.preventDefault(); const el = document.querySelector(hash); if(el) el.scrollIntoView({behavior:'smooth'}); });
+          }
+        };
+        addLink('#team','Worker');
+        addLink('#rating','Rating');
+      })();
+
+      // Build interactive stars
+      (function(){
+        const container = document.getElementById('rtStars');
+        if(!container) return;
+        let value = 0; // 0..5
+        const setValue = (v)=>{ value = v; [...container.children].forEach((el,i)=>{ el.classList.toggle('active', i < value); el.setAttribute('aria-checked', i < value ? 'true':'false'); }); };
+        for(let i=1;i<=5;i++){
+          const s = document.createElement('i'); s.className='fas fa-star star'; s.setAttribute('role','radio'); s.setAttribute('aria-label', i+' bintang'); s.dataset.val = String(i);
+          s.addEventListener('click', ()=> setValue(i));
+          s.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); setValue(i); } });
+          container.appendChild(s);
+        }
+        setValue(5); // default 5
+        // Expose getter
+        window.__getRatingValue = ()=> value;
+      })();
+
+      // Submit rating to the same Discord webhook (routed oleh dispatcher)
+      (function(){
+        const btn = document.getElementById('rtSubmit');
+        if(!btn) return;
+        const statusEl = document.getElementById('rtStatus');
+        const $ = (id)=> document.getElementById(id);
+        const clean = (t,max)=> (t? String(t).replace(/\s+/g,' ').trim(): '').slice(0,max||9999);
+
+        btn.addEventListener('click', async ()=>{
+          const name = clean($('rtName').value,80) || 'Anonim';
+          const discord = clean($('rtDiscord').value,60);
+          const service = clean($('rtService').value,60);
+          const rating = (typeof window.__getRatingValue==='function' ? window.__getRatingValue():0) || 0;
+          const comment = clean($('rtComment').value,600);
+
+          if(!rating){ statusEl.style.color='#ff6b6b'; statusEl.textContent='Mohon pilih rating bintang.'; return; }
+          if(!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL.includes('PASTE_WEBHOOK')){ statusEl.style.color='#ff6b6b'; statusEl.textContent='Webhook Discord belum diset.'; return; }
+
+          const starText = '★'.repeat(rating) + '☆'.repeat(5-rating) + ` (${rating}/5)`;
+          const embed = {
+            title: `Rating Baru • ${service}`,
+            color: 0xFFD700,
+            fields: [
+              { name:'Nama', value: name, inline: true },
+              { name:'Discord', value: discord || '-', inline: true },
+              { name:'Rating', value: starText, inline: false },
+              { name:'Ulasan', value: comment || '-', inline: false }
+            ],
+            timestamp: new Date().toISOString(),
+            footer: { text: 'rgch.e • Web Rating' }
+          };
+          const payload = { username:'rgch.e Ratings', content:'**Ulasan baru masuk!**', embeds:[embed] };
+
+          try{
+            btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            statusEl.style.color='#FFD700'; statusEl.textContent='Mengirim ke Discord...';
+            const res = await fetch(DISCORD_WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+            if(!res.ok) throw new Error('HTTP '+res.status);
+            statusEl.style.color = '#4CAF50'; statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Terima kasih! Rating kamu sudah terkirim.';
+            // reset minimal (jangan ganggu default stars)
+            $('rtComment').value='';
+          } catch(err){
+            console.error(err);
+            statusEl.style.color='#ff6b6b';
+            statusEl.innerHTML = '<i class="fas fa-times-circle"></i> Gagal kirim. '+(String(err).includes('Failed to fetch')? 'Kemungkinan CORS. ':'')+'Silakan coba lagi atau kirim via Discord.';
+          } finally {
+            btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Rating';
+          }
+        });
+      })();
+    </script>
+
+    
+    <!-- =====================  ADDITIONS 3 (Hamburger / Garis 3 for Navbar)  ===================== -->
+    <style>
+      /* Tombol hamburger (garis 3) */
+      .hamburger{ background:transparent; border:0; width:42px; height:42px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; cursor:pointer; }
+      .hamburger span{ display:block; width:22px; height:2px; background:var(--light-text); margin:3px 0; transition:transform .18s ease, opacity .18s ease, background .18s ease; }
+      .hamburger:focus{ outline:2px solid rgba(255,107,0,.5); outline-offset:2px; }
+
+      /* Panel menu yang berisi .nav-links dipindahkan menjadi dropdown/overlay */
+      .navbar .nav-links{ position:fixed; top:64px; right:12px; display:none; flex-direction:column; gap:6px; background:var(--dark-surface); border:1px solid var(--border-color); border-radius:12px; padding:10px; box-shadow:0 12px 36px rgba(0,0,0,.5); width:min(88vw, 280px); max-height:70vh; overflow:auto; z-index:10000; }
+      .navbar .nav-links a{ width:100%; padding:10px 12px; margin:0; border-radius:8px; }
+      .navbar .nav-links a:hover{ background:rgba(255,107,0,.08); }
+      /* Saat menu dibuka */
+      .navbar.show-menu .nav-links{ display:flex; }
+
+      /* Animasi ikon hamburger menjadi "X" saat aktif */
+      .navbar.show-menu .hamburger span:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+      .navbar.show-menu .hamburger span:nth-child(2){ opacity:0; }
+      .navbar.show-menu .hamburger span:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
+
+      /* Sembunyikan layout lama dan selalu gunakan hamburger (agar benar-benar dipindahkan) */
+      .navbar .nav-links{ /* override display flex inline di awal */ }
+
+      /* Sesuaikan posisi panel di layar kecil */
+      @media(max-width:480px){
+        .navbar .nav-links{ top:58px; right:8px; width:min(92vw, 320px); }
+      }
+
+      /* Hormati safe area */
+      @supports(padding:max(env(safe-area-inset-top),0px)){
+        .navbar .nav-links{ right: max(8px, env(safe-area-inset-right)); top: calc(58px + env(safe-area-inset-top)); }
+      }
+    </style>
+    <script>
+      // Inject tombol hamburger dan logika toggle tanpa mengubah markup yang ada
+      (function(){
+        const navbar = document.querySelector('.navbar');
+        if(!navbar) return;
+        // Buat tombol jika belum ada
+        if(!document.getElementById('hamburger')){
+          const btn = document.createElement('button');
+          btn.id = 'hamburger';
+          btn.className = 'hamburger';
+          btn.setAttribute('aria-label','Buka menu');
+          btn.setAttribute('aria-expanded','false');
+          btn.setAttribute('aria-controls','navLinksPanel');
+          btn.innerHTML = '<span></span><span></span><span></span>';
+          const social = navbar.querySelector('.social-links');
+          // sisipkan sebelum ikon sosial, agar tetap di kanan
+          navbar.insertBefore(btn, social || null);
+
+          const navLinks = navbar.querySelector('.nav-links');
+          if(navLinks){ navLinks.id = navLinks.id || 'navLinksPanel'; }
+
+          // Toggle buka/tutup
+          const closeMenu = ()=>{ navbar.classList.remove('show-menu'); btn.setAttribute('aria-expanded','false'); };
+          const toggleMenu = (e)=>{ e && e.stopPropagation(); const open = navbar.classList.toggle('show-menu'); btn.setAttribute('aria-expanded', open?'true':'false'); };
+
+          btn.addEventListener('click', toggleMenu);
+
+          // Klik di luar menutup menu
+          document.addEventListener('click', (e)=>{ if(!navbar.contains(e.target)) closeMenu(); });
+
+          // ESC untuk menutup
+          document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+
+          // Delegasi: klik tautan di menu -> tutup
+          const panel = navbar.querySelector('.nav-links');
+          if(panel){
+            panel.addEventListener('click', (e)=>{
+              const a = e.target.closest('a');
+              if(a){ closeMenu(); }
+            });
+          }
+        }
+      })();
+    </script>
+
 </body>
 </html>
