@@ -952,5 +952,229 @@
       })();
     </script>
 
+
+
+<!-- =====================  ADDITIONS 5 (Admin Login + TFO) — DO NOT MODIFY EXISTING CODE  ===================== -->
+<style>
+  .admin-fab{ position:fixed; right:18px; bottom:18px; width:52px; height:52px; border-radius:50%; background:var(--accent-color); color:#111; display:none; align-items:center; justify-content:center; border:none; box-shadow:0 10px 28px rgba(0,0,0,.45); cursor:pointer; z-index:16000; font-size:20px; }
+  .admin-fab:hover{ transform:translateY(-2px); }
+  .promo-modal-content .small{ padding:8px; font-size:12px; }
+  .admin-note{ color:var(--secondary-text); font-size:12px; margin-top:6px; }
+</style>
+<div id="adminLoginModal" class="promo-modal" aria-hidden="true">
+  <div class="promo-modal-content">
+    <h4><i class="fas fa-user-shield"></i> Admin Login</h4>
+    <p class="admin-note">* Buka login dengan klik logo <b>rgch.e</b> sebanyak <b>5×</b> cepat.</p>
+    <div class="form-group"><label for="adUser">Username</label><input id="adUser" type="text" maxlength="80" placeholder="admin" value="admin"></div>
+    <div class="form-group"><label for="adPass">PIN/Password</label><input id="adPass" type="password" maxlength="120" placeholder="Masukkan PIN/password"></div>
+    <button id="adLoginBtn" class="order-btn btn-web" type="button"><i class="fas fa-right-to-bracket"></i> Masuk</button>
+    <div id="adLoginStatus" style="min-height:22px; margin-top:6px; font-weight:800"></div>
+    <button class="order-btn btn-cancel" style="margin-top:10px" onclick="document.getElementById('adminLoginModal').classList.remove('active')">Tutup</button>
+  </div>
+</div>
+<div id="adminPanelModal" class="promo-modal" aria-hidden="true">
+  <div class="promo-modal-content">
+    <h4><i class="fas fa-tools"></i> Admin Panel</h4>
+    <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:6px;">
+      <button id="adLogoutBtn" class="order-btn btn-cancel small" type="button"><i class="fas fa-right-from-bracket"></i> Logout</button>
+    </div>
+    <div class="divider"></div>
+    <h4 style="margin:6px 0 10px"><i class="fas fa-gift" style="color:#ffd28a"></i> Kirim TFO (Thank For Order)</h4>
+    <p class="admin-note">* Terkirim ke Discord menggunakan <b>webhook khusus</b> (bukan yang order/rating).</p>
+    <div class="form-group"><label for="tfoName">Nama Pelanggan</label><input id="tfoName" type="text" maxlength="80" placeholder="Opsional"></div>
+    <div class="form-group"><label for="tfoOrderId">Order ID *</label><input id="tfoOrderId" type="text" maxlength="60" placeholder="contoh: ORD-ABCD123"></div>
+    <div class="form-group"><label for="tfoService">Layanan *</label>
+      <select id="tfoService">
+        <option value="Thumbnail Design">Thumbnail Design</option>
+        <option value="Character Render">Character Render</option>
+      </select>
+    </div>
+    <div class="form-group"><label for="tfoMention">Discord User ID (opsional, untuk @mention)</label><input id="tfoMention" type="text" maxlength="32" placeholder="contoh: 123456789012345678"></div>
+    <div class="form-group"><label for="tfoLink">Link Tambahan (opsional)</label><input id="tfoLink" type="url" maxlength="200" placeholder="URL invoice/brief"></div>
+    <div class="form-group"><label for="tfoNote">Pesan TFO</label><textarea id="tfoNote" rows="4" maxlength="600" placeholder="Terima kasih sudah memesan di rgch.e! Pesananmu sedang kami proses. 🙏"></textarea></div>
+    <button id="tfoSendBtn" class="order-btn btn-web" type="button"><i class="fas fa-paper-plane"></i> Kirim ke Discord</button>
+    <div id="tfoStatus" style="min-height:22px; margin-top:6px; font-weight:800"></div>
+    <button class="order-btn btn-cancel" style="margin-top:10px" onclick="document.getElementById('adminPanelModal').classList.remove('active')">Tutup</button>
+  </div>
+</div>
+<button id="adminFab" class="admin-fab" title="Buka Admin"><i class="fas fa-user-cog"></i></button>
+<script>
+(function(){
+  const DISCORD_TFO_WEBHOOK_URL = 'https://discord.com/api/webhooks/1464395994451017966/pK4P0-BnsJH_n_zzsJwD7jdcf_2qvjDx_VzLXkV_ScU_3RDR1LcyNz4ASaWWWw1Q_ZI8';
+  const ADMIN_USERNAME = 'admin';
+  const ADMIN_PASSWORD_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
+  const SESSION_KEY = 'rgche_admin_auth_v1';
+  function openModal(id){ document.getElementById(id)?.classList.add('active'); }
+  function closeModal(id){ document.getElementById(id)?.classList.remove('active'); }
+  async function sha256Hex(text){ const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)); return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); }
+  function isAuthed(){ try{ return localStorage.getItem(SESSION_KEY)==='ok'; }catch(e){ return false; } }
+  function setAuthed(v){ try{ v? localStorage.setItem(SESSION_KEY,'ok') : localStorage.removeItem(SESSION_KEY); }catch(e){} updateUI(); }
+  const fab = document.getElementById('adminFab');
+  function updateUI(){ fab.style.display = isAuthed()? 'flex':'none'; }
+  const loginModal = document.getElementById('adminLoginModal');
+  const panelModal = document.getElementById('adminPanelModal');
+  const loginBtn = document.getElementById('adLoginBtn');
+  const logoutBtn = document.getElementById('adLogoutBtn');
+  const loginStatus = document.getElementById('adLoginStatus');
+  const adUser = document.getElementById('adUser');
+  const adPass = document.getElementById('adPass');
+  [loginModal, panelModal].forEach(m=> m?.addEventListener('click', (e)=>{ if(e.target===m) m.classList.remove('active'); }));
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeModal('adminLoginModal'); closeModal('adminPanelModal'); } });
+  loginBtn?.addEventListener('click', async ()=>{
+    loginStatus.textContent='Memverifikasi...'; loginStatus.style.color='#FFD700';
+    const u = String(adUser.value||'').trim() || 'admin';
+    const p = String(adPass.value||'');
+    const hash = await sha256Hex(p);
+    if(u===ADMIN_USERNAME && hash===ADMIN_PASSWORD_HASH){
+      setAuthed(true);
+      loginStatus.style.color='#4CAF50'; loginStatus.innerHTML='<i class="fas fa-check-circle"></i> Login sukses';
+      adPass.value='';
+      setTimeout(()=>{ closeModal('adminLoginModal'); openModal('adminPanelModal'); }, 500);
+    } else {
+      loginStatus.style.color='#ff6b6b'; loginStatus.innerHTML='<i class="fas fa-times-circle"></i> Username/PIN salah';
+    }
+  });
+  logoutBtn?.addEventListener('click', ()=>{ setAuthed(false); closeModal('adminPanelModal'); });
+  fab?.addEventListener('click', ()=> openModal('adminPanelModal'));
+  (function(){
+    const targets = [];
+    const t1 = document.querySelector('.logo a'); if(t1) targets.push(t1);
+    const t2 = document.getElementById('commission-trigger'); if(t2) targets.push(t2);
+    const t3 = document.querySelector('.hero-content h1'); if(t3) targets.push(t3);
+    let count=0; let timer=null;
+    const handler = ()=>{
+      count++;
+      if(count>=5){ count=0; clearTimeout(timer); openModal('adminLoginModal'); }
+      else { clearTimeout(timer); timer=setTimeout(()=>{ count=0; }, 1500); }
+    };
+    targets.forEach(el=> el.addEventListener('click', handler));
+  })();
+  const tfoBtn = document.getElementById('tfoSendBtn');
+  const tfoStatus = document.getElementById('tfoStatus');
+  tfoBtn?.addEventListener('click', async ()=>{
+    if(!isAuthed()){ openModal('adminLoginModal'); return; }
+    const name = String(document.getElementById('tfoName').value||'').trim();
+    const orderId = String(document.getElementById('tfoOrderId').value||'').trim();
+    const service = String(document.getElementById('tfoService').value||'').trim();
+    const mentionId = String(document.getElementById('tfoMention').value||'').trim();
+    const link = String(document.getElementById('tfoLink').value||'').trim();
+    const note = String(document.getElementById('tfoNote').value||'').trim();
+    if(!DISCORD_TFO_WEBHOOK_URL || /PASTE_.*_WEBHOOK/i.test(DISCORD_TFO_WEBHOOK_URL)){ tfoStatus.style.color='#ff6b6b'; tfoStatus.innerHTML='<i class="fas fa-exclamation-triangle"></i> Webhook TFO belum diset.'; return; }
+    if(!orderId || !service){ tfoStatus.style.color='#ff6b6b'; tfoStatus.textContent='Order ID dan Layanan wajib diisi.'; return; }
+    const embed = {
+      title: 'Thank You For Your Order',
+      color: 0x6ad66a,
+      fields: [
+        { name: 'Order ID', value: '`'+orderId+'`', inline: true },
+        { name: 'Layanan', value: service, inline: true },
+        { name: 'Nama', value: name || '-', inline: false },
+        { name: 'Catatan', value: (note || 'Terima kasih sudah memesan di rgch.e! Pesananmu sedang kami proses. 🙏'), inline: false },
+        ...(link ? [{ name: 'Link', value: link, inline: false }] : [])
+      ],
+      timestamp: new Date().toISOString(),
+      footer: { text: 'rgch.e • TFO' }
+    };
+    const content = mentionId ? `<@${mentionId}>` : '';
+    try{
+      tfoBtn.disabled=true; tfoBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+      tfoStatus.style.color='#FFD700'; tfoStatus.textContent='Mengirim ke Discord...';
+      const res = await fetch(DISCORD_TFO_WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ username:'rgch.e TFO', content, embeds:[embed] }) });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      tfoStatus.style.color='#4CAF50'; tfoStatus.innerHTML='<i class="fas fa-check-circle"></i> TFO terkirim.';
+    } catch(err){
+      console.error(err);
+      tfoStatus.style.color='#ff6b6b'; tfoStatus.innerHTML='<i class="fas fa-times-circle"></i> Gagal kirim. '+(String(err).includes('Failed to fetch')?'Kemungkinan CORS. ':'')+'Coba lagi.';
+    } finally {
+      tfoBtn.disabled=false; tfoBtn.innerHTML='<i class=\"fas fa-paper-plane\"></i> Kirim ke Discord';
+    }
+  });
+  updateUI();
+})();
+</script>
+
+
+<!-- =====================  ADDITIONS 6 (TFO Image Upload Injection) — DO NOT MODIFY EXISTING CODE  ===================== -->
+<style>
+  /* Preview untuk lampiran TFO */
+  .tfo-previews{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+  .tfo-previews .item{ width:56px; height:56px; border:1px solid var(--border-color); border-radius:8px; overflow:hidden; background:#111; }
+  .tfo-previews .item img{ width:100%; height:100%; object-fit:cover; display:block; }
+</style>
+<script>
+(function(){
+  // 1) Sisipkan input file untuk TFO (tanpa mengubah markup yang sudah ada)
+  const panel = document.querySelector('#adminPanelModal .promo-modal-content');
+  const sendBtn = document.getElementById('tfoSendBtn');
+  if(panel && sendBtn && !document.getElementById('tfoFiles')){
+    const wrap = document.createElement('div');
+    wrap.className = 'form-group';
+    wrap.innerHTML = `
+      <label for="tfoFiles">Lampirkan Gambar Desain (opsional)</label>
+      <input id="tfoFiles" type="file" accept="image/*" multiple>
+      <div class="admin-note" id="tfoFilesNote">Maks 3 file. Akan dikirim sebagai lampiran ke Discord.</div>
+      <div id="tfoFilesPreview" class="tfo-previews"></div>
+    `;
+    panel.insertBefore(wrap, sendBtn);
+
+    // Preview
+    const input = wrap.querySelector('#tfoFiles');
+    const preview = wrap.querySelector('#tfoFilesPreview');
+    const note = wrap.querySelector('#tfoFilesNote');
+    input.addEventListener('change', ()=>{
+      preview.innerHTML='';
+      const files = Array.from(input.files||[]);
+      const max = Math.min(files.length, 3);
+      if(files.length>3){ note.textContent = 'Hanya 3 file pertama yang akan dikirim.'; }
+      else { note.textContent = 'Maks 3 file. Akan dikirim sebagai lampiran ke Discord.'; }
+      for(let i=0;i<max;i++){
+        const f = files[i];
+        const url = URL.createObjectURL(f);
+        const item = document.createElement('div'); item.className='item';
+        const img = document.createElement('img'); img.src=url; img.alt=f.name; item.appendChild(img);
+        preview.appendChild(item);
+      }
+    });
+  }
+
+  // 2) Patch fetch: upgrade request TFO (JSON) menjadi multipart jika ada file pada #tfoFiles
+  const prevFetch = window.fetch.bind(window);
+  window.fetch = function(input, init){
+    try{
+      if(typeof input === 'string' && /^https:\/\/discord\.com\/api\/webhooks\//i.test(input) && init && String(init.method||'').toUpperCase()==='POST'){
+        const ct = init.headers && (init.headers['Content-Type'] || init.headers['content-type'] || '');
+        const isJSON = ct && String(ct).includes('application/json') && typeof init.body === 'string';
+        if(isJSON){
+          try{
+            const payload = JSON.parse(init.body);
+            const isTFO = (payload?.username && /rgch\.e\s*TFO/i.test(payload.username))
+                       || (payload?.embeds?.[0]?.footer?.text && /rgch\.e\s*•\s*TFO/i.test(payload.embeds[0].footer.text))
+                       || (payload?.embeds?.[0]?.title && /Thank You For Your Order/i.test(payload.embeds[0].title));
+            if(isTFO){
+              const fEl = document.getElementById('tfoFiles');
+              const files = (fEl && fEl.files) ? Array.from(fEl.files) : [];
+              if(files.length>0){
+                const form = new FormData();
+                form.append('payload_json', init.body);
+                const maxAttach = Math.min(files.length, 3);
+                for(let i=0;i<maxAttach;i++){
+                  form.append(`files[${i}]`, files[i], files[i].name);
+                }
+                const newInit = { ...init, headers: { ...(init.headers||{}) } };
+                // hapus header content-type agar boundary di-set otomatis
+                delete newInit.headers['Content-Type'];
+                delete newInit.headers['content-type'];
+                newInit.body = form;
+                return prevFetch(input, newInit);
+              }
+            }
+          }catch(e){ /* abaikan & lanjut */ }
+        }
+      }
+    }catch(e){ /* pass-through */ }
+    return prevFetch(input, init);
+  };
+})();
+</script>
+
 </body>
 </html>
